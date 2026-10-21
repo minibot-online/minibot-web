@@ -37,6 +37,12 @@ export default {
       upstreamReq.headers.delete("x-server");
       return fetch(upstreamReq);
     }
-    return env.ASSETS.fetch(request);
+    const res = await env.ASSETS.fetch(request);
+    if (url.pathname.endsWith("/") || url.pathname.endsWith(".html") || !url.pathname.split("/").pop().includes(".")) {
+      const h = new Headers(res.headers);
+      h.set("Cache-Control", "no-store");
+      return new Response(res.body, { status: res.status, headers: h });
+    }
+    return res;
   }
 };
