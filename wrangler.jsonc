@@ -1,0 +1,12 @@
+{
+  // کانفیگ دیپلوی Mini Bot Web (پنل کاربران) روی Cloudflare Workers
+  "name": "minibot-web",
+  "main": "worker.js",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
