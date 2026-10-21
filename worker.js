@@ -25,7 +25,9 @@ export default {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api")) {
       let target = UPSTREAM;
-      const sid = request.headers.get("x-server");
+      // لیست سرورها همیشه روی سرور اصلی نگهداری می‌شود؛ حتی اگر کاربر سرور دیگری انتخاب کرده باشد
+      const isRegistryPath = url.pathname === "/api/servers" || url.pathname === "/api/admin/servers";
+      const sid = isRegistryPath ? null : request.headers.get("x-server");
       if (sid) {
         const reg = await getRegistry();
         const s = reg.find(x => x.id === sid);
