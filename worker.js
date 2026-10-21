@@ -35,6 +35,19 @@ export default {
       }
       const upstreamReq = new Request(target + url.pathname + url.search, request);
       upstreamReq.headers.delete("x-server");
+      if (url.pathname === "/api/servers" && request.method === "GET") {
+        try {
+          const ctl = new AbortController();
+          const tm = setTimeout(() => ctl.abort(), 8000);
+          const res = await fetch(upstreamReq, { signal: ctl.signal });
+          clearTimeout(tm);
+          if (res.ok) return res;
+        } catch (e) {}
+        const reg = await getRegistry();
+        return new Response(JSON.stringify({ servers: reg }), {
+          headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }
+        });
+      }
       return fetch(upstreamReq);
     }
     const res = await env.ASSETS.fetch(request);

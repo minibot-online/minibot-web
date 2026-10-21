@@ -1796,6 +1796,8 @@ body{
 <script>!function(){
 const el=document.getElementById("serverSelect");if(!el)return;
 let busy=!1;
+function cached(){try{const l=JSON.parse(localStorage.getItem("mb_servers")||"null");return Array.isArray(l)&&l.length?l:null}catch(e){return null}}
+function saveCache(l){try{localStorage.setItem("mb_servers",JSON.stringify(l))}catch(e){}}
 async function fetchOnce(){
   const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
   try{const e=await fetch("/api/servers",{cache:"no-store",signal:c.signal});
@@ -1818,18 +1820,20 @@ function render(list){
 function isReal(){return el.options.length>1}
 async function loadServers(){
   if(busy)return;busy=!0;
-  try{const l=await fetchOnce();
-    if(l&&l.length){render(l);return}
+  try{
+    const l=await fetchOnce();
+    if(l&&l.length){saveCache(l);render(l);return}
   }finally{busy=!1}
-  el.innerHTML='<option value="" disabled selected>در حال دریافت سرورها…</option>';
+  if(!cached())el.innerHTML='<option value="" disabled selected>در حال دریافت سرورها…</option>';
   el.style.display="block";
   setTimeout(loadServers,7000);
 }
 function sameList(l){const c=[];for(let i=1;i<el.options.length;i++)c.push(el.options[i].value);return l.length===c.length&&l.every(t=>c.includes(t.id))}
 async function liveRefresh(){
   if(document.hidden||el.offsetWidth<1)return;
-  try{const l=await fetchOnce();if(l&&l.length&&!sameList(l))render(l)}catch(e){}
+  try{const l=await fetchOnce();if(l&&l.length&&!sameList(l)){saveCache(l);render(l)}}catch(e){}
 }
+const c0=cached();if(c0)render(c0);else el.style.display="block";
 loadServers();window.__reloadServers=loadServers;
 setInterval(function(){isReal()?liveRefresh():loadServers()},8000);
 }();</script>
