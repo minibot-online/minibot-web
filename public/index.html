@@ -1205,6 +1205,17 @@ body{
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
 
+
+/* ---------- Subpages: هر بخش «شما» یک صفحه کامل جدا ---------- */
+.ws-panel.subpage{display:none;position:fixed;inset:0;z-index:600;background:var(--bg);padding:0;border-bottom:none;box-shadow:none;flex-direction:column;border-radius:0}
+.ws-panel.subpage.open{display:flex;animation:subpage-in .26s cubic-bezier(.32,.72,0,1)}
+@keyframes subpage-in{from{transform:translateX(-100%)}to{transform:none}}
+.subpage-head{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-2);border-bottom:1px solid var(--border-soft)}
+.subpage-back{width:38px;height:38px;flex:none;border:none;border-radius:12px;background:var(--bg-3);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s}
+.subpage-back:active{background:var(--bg-3-hover)}
+.subpage-back .icon{width:20px;height:20px}
+.subpage-title{font-weight:800;font-size:16px;color:var(--text)}
+.subpage-body{flex:1;overflow-y:auto;padding:16px 16px 44px}
 </style>
 </head>
 <body>
@@ -1585,7 +1596,10 @@ body{
           
           <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
         </div>
-        <div class="ws-panel" data-ws-panel="account">
+        <div class="ws-panel subpage" data-ws-panel="account">
+          <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">حساب</div></div>
+          <div class="subpage-body">
+
           <div class="account-box" id="accountBox"></div>
           <button class="btn btn-secondary btn-block" id="acctEditToggle" type="button">ویرایش نام و عکس نمایه</button>
           <div class="acct-edit" id="acctEdit">
@@ -1599,6 +1613,8 @@ body{
           </div>
           <p class="settings-hint">از این بخش می‌توانی اطلاعات حساب خود را ببینی یا از حساب خارج شوی.</p>
           <button class="btn btn-danger btn-block" id="accountLogoutBtn">خروج از حساب کاربری</button>
+        
+          </div>
         </div>
 
         <div class="ws-row" data-ws="plan">
@@ -1610,8 +1626,13 @@ body{
           
           <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
         </div>
-        <div class="ws-panel" data-ws-panel="plan">
+        <div class="ws-panel subpage" data-ws-panel="plan">
+          <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">اشتراک و پلن</div></div>
+          <div class="subpage-body">
+
           <div id="planAdmin"></div>
+        
+          </div>
         </div>
 
         <div class="ws-row" data-ws="appearance">
@@ -1623,12 +1644,17 @@ body{
           
           <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
         </div>
-        <div class="ws-panel" data-ws-panel="appearance">
+        <div class="ws-panel subpage" data-ws-panel="appearance">
+          <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">ظاهر و نمایش</div></div>
+          <div class="subpage-body">
+
           <div class="toggle-row" style="padding-top:2px">
             <div class="toggle-label">حالت روشن
               <span class="sub">جابجایی بین تم تیره و روشن</span>
             </div>
             <div class="toggle-switch" id="themeToggle"></div>
+          </div>
+        
           </div>
         </div>
 
@@ -1641,7 +1667,10 @@ body{
           
           <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
         </div>
-        <div class="ws-panel" data-ws-panel="about">
+        <div class="ws-panel subpage" data-ws-panel="about">
+          <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">درباره ما</div></div>
+          <div class="subpage-body">
+
           <div class="about-panel">
             <div class="about-panel-mark"><span class="pbc-star">✦</span></div>
             <div class="about-panel-title">Mini Bot</div>
@@ -1665,6 +1694,8 @@ body{
                 </a>
               </div>
             </div>
+          </div>
+        
           </div>
         </div>
 
@@ -1839,7 +1870,7 @@ setInterval(function(){isReal()?liveRefresh():loadServers()},8000);
 }();</script>
 <script>!function(){const e=document.getElementById("appModalOverlay"),t=document.getElementById("appModalTitle"),n=document.getElementById("appModalMsg"),l=document.getElementById("appModalInput"),a=document.getElementById("appModalOk"),s=document.getElementById("appModalCancel");let d=null;function o(t){if(e.classList.remove("show"),setTimeout(()=>{e.style.display="none"},180),d){const e=d;d=null,e(t)}}function i(s){return new Promise(o=>{d=o,t.textContent=s.title||"",n.textContent=s.message||"",n.style.display=s.message?"":"none",a.textContent=s.okText||"تأیید",a.className="am-ok"+(s.danger?" am-danger":""),s.input?(l.style.display="",l.value=s.defaultValue||"",l.placeholder=s.placeholder||""):(l.style.display="none",l.value=""),e.style.display="flex",requestAnimationFrame(()=>e.classList.add("show")),s.input&&setTimeout(()=>l.focus(),60)})}a.addEventListener("click",()=>{o("none"===l.style.display||l.value)}),s.addEventListener("click",()=>o("none"!==l.style.display&&null)),e.addEventListener("click",t=>{t.target===e&&o("none"!==l.style.display&&null)}),l.addEventListener("keydown",e=>{"Enter"===e.key&&(e.preventDefault(),o(l.value)),"Escape"===e.key&&(e.preventDefault(),o(null))}),window.appPrompt=(e,t,n)=>i(Object.assign({message:e,input:!0,defaultValue:t||""},n||{})),window.appConfirm=(e,t)=>i(Object.assign({message:e,input:!1},t||{}))}();
 </script>
-<script>!function(){function t(){const t=document.getElementById("wsSettingsList");t&&!t.dataset.wsInit&&(t.dataset.wsInit="1",t.querySelectorAll(".ws-row").forEach(e=>{e.addEventListener("click",()=>{const s=e.getAttribute("data-ws"),o=t.querySelector('.ws-panel[data-ws-panel="'+s+'"]');if(!o)return;const n=e.classList.contains("open");t.querySelectorAll(".ws-row.open").forEach(s=>{if(s!==e){s.classList.remove("open");const e=t.querySelector('.ws-panel[data-ws-panel="'+s.getAttribute("data-ws")+'"]');e&&e.classList.remove("open")}}),e.classList.toggle("open",!n),o.classList.toggle("open",!n)})}))}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",t):t(),document.addEventListener("click",e=>{e.target.closest&&e.target.closest('[data-tab="profile"]')&&setTimeout(t,50);e.target.closest&&e.target.closest("#profileQrBtn")&&"function"==typeof toast&&toast("QR به‌زودی فعال می‌شود")})}();
+<script>!function(){function t(){const t=document.getElementById("wsSettingsList");t&&!t.dataset.wsInit&&(t.dataset.wsInit="1",t.querySelectorAll(".ws-row").forEach(e=>{e.addEventListener("click",()=>{const s=e.getAttribute("data-ws"),o=document.querySelector('.ws-panel[data-ws-panel="'+s+'"]');o&&o.classList.add("open")})})),document.querySelectorAll(".subpage-back").forEach(e=>{e.addEventListener("click",()=>{const o=e.closest(".ws-panel");o&&o.classList.remove("open")})}))}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",t):t(),document.addEventListener("click",e=>{e.target.closest&&e.target.closest('[data-tab="profile"]')&&setTimeout(t,50);e.target.closest&&e.target.closest("#profileQrBtn")&&"function"==typeof toast&&toast("QR به‌زودی فعال می‌شود")})}();
 </script>
 </body>
 </html>
