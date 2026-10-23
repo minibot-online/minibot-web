@@ -1216,6 +1216,11 @@ body{
 .subpage-back .icon{width:20px;height:20px}
 .subpage-title{font-weight:800;font-size:16px;color:var(--text)}
 .subpage-body{flex:1;overflow-y:auto;padding:16px 16px 44px}
+
+/* ---------- Language options ---------- */
+.ws-row.lang-opt{width:100%;border:none;background:var(--bg-2);cursor:pointer;font:inherit;color:inherit;text-align:start}
+.ws-row.lang-opt .lang-check{opacity:0;color:var(--accent);transform:none;transition:opacity .15s}
+.ws-row.lang-opt[data-active="1"] .lang-check{opacity:1}
 </style>
 </head>
 <body>
@@ -1658,6 +1663,39 @@ body{
           </div>
         </div>
 
+        <div class="ws-row" data-ws="lang">
+          <span class="icon ws-row-icon" data-lucide="languages"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">زبان</div>
+            <div class="ws-row-sub">فارسی / English</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-panel subpage" data-ws-panel="lang">
+          <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">زبان</div></div>
+          <div class="subpage-body">
+            <div class="ws-list" style="margin:0">
+              <button class="ws-row lang-opt" type="button" data-lang="fa" data-active="1">
+                <span class="icon ws-row-icon" data-lucide="languages"></span>
+                <div class="ws-row-text">
+                  <div class="ws-row-title">فارسی</div>
+                  <div class="ws-row-sub">Persian</div>
+                </div>
+                <span class="icon ws-row-chev lang-check" data-lucide="check"></span>
+              </button>
+              <button class="ws-row lang-opt" type="button" data-lang="en" data-active="0">
+                <span class="icon ws-row-icon" data-lucide="languages"></span>
+                <div class="ws-row-text">
+                  <div class="ws-row-title">English</div>
+                  <div class="ws-row-sub">انگلیسی</div>
+                </div>
+                <span class="icon ws-row-chev lang-check" data-lucide="check"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="ws-row" data-ws="about">
           <span class="icon ws-row-icon" data-lucide="info"></span>
           <div class="ws-row-text">
@@ -1872,5 +1910,30 @@ setInterval(function(){isReal()?liveRefresh():loadServers()},8000);
 </script>
 <script>!function(){function t(){const t=document.getElementById("wsSettingsList");t&&!t.dataset.wsInit&&(t.dataset.wsInit="1",window.addEventListener("popstate",()=>{document.querySelectorAll(".ws-panel.subpage.open").forEach(e=>e.classList.remove("open"))}),t.querySelectorAll(".ws-row").forEach(e=>{e.addEventListener("click",()=>{const s=e.getAttribute("data-ws"),o=document.querySelector('.ws-panel[data-ws-panel="'+s+'"]');o&&!o.classList.contains("open")&&(o.classList.add("open"),history.pushState({wsSub:1},""))})})),document.querySelectorAll(".subpage-back").forEach(e=>{e.addEventListener("click",()=>{e.closest(".ws-panel")&&history.back()})})}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",t):t(),document.addEventListener("click",e=>{e.target.closest&&e.target.closest('[data-tab="profile"]')&&setTimeout(t,50);e.target.closest&&e.target.closest("#profileQrBtn")&&"function"==typeof toast&&toast("QR به‌زودی فعال می‌شود")})}();
 </script>
-</body>
+<script>
+(function(){
+var D={"ورود": "Login", "ورود به حساب": "Log in", "ورود به جزئیات": "Login details", "برای استفاده از این ربات وارد شوید": "Log in to use this bot", "حساب ندارید؟": "No account?", "ساخت حساب": "Create account", "خوش آمدی!": "Welcome!", "ذخیره و شروع": "Save and start", "اتصال دستگاه واتساپ": "Connect WhatsApp device", "اتصال با شماره تلفن": "Connect with phone number", "در حال اتصال به سرور": "Connecting to server", "در حال دریافت اطلاعات…": "Loading data…", "در حال دریافت سرورها…": "Loading servers…", "در حال دریافت وضعیت…": "Loading status…", "دریافت کد اتصال": "Get pairing code", "کد اتصال": "Pairing code", "کپی کد": "Copy code", "اسکن کد QR": "Scan QR code", "بعداً": "Later", "برای استفاده از امکانات ربات، شماره واتساپ را وصل کن": "Connect your WhatsApp number to use the bot features", "واتساپ متصل نیست": "WhatsApp not connected", "متصل کردن": "Connect", "تنظیمات ← دستگاه‌های متصل ← افزودن دستگاه": "Settings ← Linked devices ← Add device", "این مرحله فقط یک بار انجام می‌شود و برای ورود به پنل لازم است.": "This step is done only once and is required to access the panel.", "باز کردن پیام یک‌بارمصرف (.vv)": "Open view-once message (.vv)", "روی عکس یا ویدیوی «یک‌بارمصرف» ریپلای کن و بنویس .vv تا دوباره باز شود": "Reply .vv to a view-once photo or video to reopen it", "داشبورد": "Dashboard", "امکانات": "Features", "صرافی": "Exchange", "شما": "Profile", "حساب کاربری": "Account", "فیش امروز": "Today's receipts", "آمار فیش‌ها": "Receipt statistics", "فیش‌های ثبت‌شده": "Registered receipts", "زمان باقی‌مانده": "Time remaining", "روز باقی‌مانده": "days remaining", "امروز": "Today", "کل": "Total", "فعال": "Active", "غیرفعال": "Inactive", "بروزرسانی": "Refresh", "قابلیت‌های ربات": "Bot features", "این بخش چه می‌کند؟": "What does this section do?", "کاربر فیش می‌فرستد ← ربات اسکن می‌کند": "User sends receipt ← bot scans it", "فیش‌ها برای تأیید نزد تأیید کننده می‌روند و ری‌اکشنش برمی‌گردد": "Receipts go to the approver and their reaction comes back", "فیش گروه‌ها بررسی و تکراری‌ها علامت می‌خورند": "Group receipts are checked and duplicates marked", "فیش‌های گروه‌ها با هوش مصنوعی بررسی می‌شود": "Group receipts are checked with AI", "تشخیص فیش تکراری": "Duplicate receipt detection", "تشخیص فیش تکراری در گروه‌ها": "Duplicate detection in groups", "عکس غیر بانکی ← نادیده گرفته می‌شود": "Non-bank image ← ignored", "فیش تکراری ← جواب خودکار «ارسال شده»": "Duplicate receipt ← auto reply Already sent", "فیش فوروارد می‌شود به تأیید کننده ← در انتظار": "Receipt forwarded to approver ← pending", "فیش‌های در جریان": "Pending receipts", "ارسال فیش به تأیید کننده": "Send receipts to approver", "ارسال فیش به تأیید کننده و ری‌اکشن": "Send receipts to approver with reaction", "تأیید کننده": "Approver", "گروه‌های تأیید": "Approval groups", "گروه‌های تأیید کننده": "Approver groups", "گروه‌های تحت نظر": "Watched groups", "همه گروه‌ها": "All groups", "گروه تحت نظر": "Watched group", "انتخاب همه": "Select all", "لغو همه": "Clear all", "لغو انتخاب همه": "Clear all selections", "لغو انتخاب تأیید کننده": "Clear approver selection", "روی هر گروه بزن تا روشن/خاموش شود — تا گروهی انتخاب نکنی، ربات هیچ کاری نمی‌کند": "Tap a group to toggle it — until you select a group, the bot does nothing", "به‌جای یک شماره، فیش‌ها به گروه(های) منتخب می‌روند — ری‌اکشن هر کس در آن گروه روی پیام اصلی اعمال می‌شود": "Instead of one number, receipts go to selected groups — anyone's reaction there applies to the original message", "ری‌اکشن تأیید کننده روی پیام گروه اعمال می‌شود": "The approver's reaction is applied to the group message", "در این گروه‌ها فیش‌ها برای تأیید به تأیید کننده می‌روند — جدا از گروه‌های ربات اصلی": "In these groups receipts go to the approver — separate from the main bot groups", "قابلیت‌های صرافی": "Exchange features", "افزودن": "Add", "پاک‌سازی": "Clear", "عکس": "Photo", "رسید": "Receipt", "حساب": "Account", "اطلاعات حساب و خروج": "Account info and logout", "ویرایش نام و عکس نمایه": "Edit name and profile photo", "تغییر عکس نمایه": "Change profile photo", "انتخاب عکس نمایه": "Choose profile photo", "ذخیره تغییرات": "Save changes", "از این بخش می‌توانی اطلاعات حساب خود را ببینی یا از حساب خارج شوی.": "View your account info or log out from here.", "خروج از حساب کاربری": "Log out", "خروج از حساب": "Log out", "خارج شو": "Log out", "اشتراک و پلن": "Subscription and plan", "پلن فعلی": "Current plan", "پلن فعلی، محدودیت‌ها و ارتقا": "Current plan, limits and upgrade", "خرید": "Buy", "خرید پلن": "Buy plan", "ظاهر و نمایش": "Appearance", "تم روشن یا تیره": "Light or dark theme", "جابجایی بین تم تیره و روشن": "Switch between dark and light theme", "حالت روشن": "Light mode", "درباره ما": "About us", "معرفی Mini Bot": "About Mini Bot", "ارتباط با ما": "Contact us", "واتساپ": "WhatsApp", "تلگرام": "Telegram", "نسخه ۱": "Version 1", "Mini Bot · نسخه ۱": "Mini Bot · Version 1", "Mini Bot؛ ربات واتساپ همه‌کاره برای مدیریت گروه‌ها، فیش‌ها، پرداخت‌ها و امکانات ربات، ساده و یکجا.": "Mini Bot; an all-in-one WhatsApp bot for managing groups, receipts, payments and bot features, simple and in one place.", "زبان": "Language", "انگلیسی": "English", "شما واجد شرایط نیستید": "You are not eligible", "شماره واتساپ را با کد کشور وارد کن": "Enter WhatsApp number with country code", "شماره تأیید کننده را با کد کشور وارد کن، مثل 937XXXXXXXXX": "Enter approver number with country code, e.g. 937XXXXXXXXX", "📷 انتخاب عکس رسید واریزی": "📷 Choose payment receipt photo", "یادداشت اختیاری": "Optional note", "در انتظار": "Pending", "تأیید شده": "Approved", "رد شده": "Rejected", "منقضی": "Expired", "ادامه": "Continue", "در انتظار اسکن": "Awaiting scan", "در انتظار اتصال": "Waiting for connection", "در حال اتصال": "Connecting", "متصل": "Connected", "متصل نیست": "Not connected", "متصل شد": "Connected", "به واتساپ متصل شد": "Connected to WhatsApp", "از واتساپ خارج شدی": "Logged out of WhatsApp", "قطع — در حال تلاش مجدد": "Disconnected — retrying", "اول باید واتساپ متصل شود": "WhatsApp must be connected first", "تاریخ فیش": "Receipt date", "مبلغ": "Amount", "فرستنده": "Sender", "گیرنده": "Receiver", "IBAN فرستنده": "Sender IBAN", "IBAN گیرنده": "Receiver IBAN", "شماره پیگیری": "Tracking number", "کد مرجع": "Reference code", "حذف": "Delete", "حذف کن": "Delete it", "بله، پاک کن": "Yes, clear", "حذف از فهرست": "Remove from list", "این فیش حذف شود؟ (از لیست تکراری‌ها هم پاک می‌شود)": "Delete this receipt? (also removed from the duplicates list)", "مطمئنی؟ دیگر هیچ فیشی در دیتابیس نمی‌ماند": "Are you sure? No receipts will remain in the database", "همه فیش‌ها پاک شوند؟ این عمل قابل بازگشت نیست": "Clear all receipts? This cannot be undone", "همه فیش‌ها پاک شدند": "All receipts cleared", "فیش حذف شد": "Receipt deleted", "این درخواست از فهرست حذف شود؟": "Remove this request from the list?", "کپی شد ✓": "Copied ✓", "کپی نشد": "Copy failed", "خطا": "Error", "خطا در ارتباط با سرور": "Server connection error", "خطا در ارسال درخواست": "Error sending request", "خطا در بروزرسانی": "Update error", "خطا در ورود": "Login error", "ارتباط با سرور برقرار نشد": "Could not connect to server", "پاسخ سرور نامعتبر است": "Invalid server response", "شماره ربات نامشخص": "Bot number unknown", "در حال ارسال...": "Sending...", "در حال دریافت کد...": "Getting code...", "فیش‌ها بروزرسانی شدند": "Receipts updated", "لیست گروه‌ها بروزرسانی شد": "Group list updated", "پروفایل ذخیره شد": "Profile saved", "ذخیره ناموفق بود": "Save failed", "تنظیمات پرداخت ذخیره شد ✓": "Payment settings saved ✓", "شماره را وارد کن": "Enter the number", "شماره را با کد کشور و کامل وارد کن (مثل 93745872028)": "Enter the full number with country code (e.g. 93745872028)", "رمز عبور حداقل ۴ کاراکتر باشد": "Password must be at least 4 characters", "نام کاربری: ۳ تا ۲۴ حرف انگلیسی کوچک، عدد، نقطه یا آندرلاین": "Username: 3 to 24 lowercase letters, digits, dot or underscore", "مطمئنی می‌خوای از حساب خارج بشی؟": "Sure you want to log out?", "بله، خارج شو": "Yes, log out", "بله، تأیید پرداخت": "Yes, approve payment", "بله، لغو کن": "Yes, cancel", "تأیید": "Confirm", "تأیید نهایی": "Final approval", "رد کن": "Reject", "درخواست ارسال شد — در انتظار تأیید مدیر ⏳": "Request sent — awaiting admin approval ⏳", "درخواست رد شد": "Request rejected", "پلن فعال شد ✓": "Plan activated ✓", "فعال شد:": "Enabled:", "حذف شد:": "Deleted:", "حجم عکس زیاد است — حداکثر ۳ مگابایت": "Image too large — max 3 MB", "عکس رسید الزامی است": "Receipt photo is required", "کد اتصال آماده شد ✓": "Pairing code ready ✓", "تأیید کننده اضافه و انتخاب شد": "Approver added and selected", "تأیید کننده حذف شد": "Approver removed", "گروه‌های تأیید پاک شدند": "Approval groups cleared", "گروه‌های تأیید کننده پاک شدند": "Approver groups cleared", "همه گروه‌ها انتخاب شدند": "All groups selected", "همه گروه‌ها لغو شدند": "All groups deselected", "همه گروه‌ها برای تأیید انتخاب شدند": "All groups selected for approval", "همه گروه‌ها لغو شوند؟": "Deselect all groups?", "ارسال به تأیید کننده روشن شد": "Send to approver enabled", "ارسال به تأیید کننده خاموش شد": "Send to approver disabled", "امکان .vv روشن شد": ".vv feature enabled", "امکان .vv خاموش شد": ".vv feature disabled", "تشخیص فیش تکراری روشن شد": "Duplicate detection enabled", "تشخیص فیش تکراری خاموش شد": "Duplicate detection disabled", "فیش ثبت‌شده —": "Receipt registered —", "فیش در جریان": "Pending receipt", "هنوز گروهی انتخاب نشده": "No group selected yet", "موردی در جریان نیست": "Nothing in progress", "تأیید کننده انتخاب نشده": "No approver selected", "درخواستی نیست": "No requests", "بی‌نام": "Anonymous", "روز": "days", "ورود با گوگل ناموفق بود — دوباره تلاش کن": "Google login failed — try again", "QR به‌زودی فعال می‌شود": "QR coming soon", "بستن ویرایش": "Close edit", "ارسال درخواست": "Send request", "نمایش بیشتر": "Show more", "مبلغ پرداخت": "Payment amount", "پرداخت به اتوما‌پی": "Payment to AutomaPay", "پرداخت به حساب‌پی": "Payment to HesabPay", "نام نمایشی": "Display name", "نام کاربری": "Username", "رمز عبور": "Password", "رمز عبور (حداقل ۴ کاراکتر)": "Password (at least 4 characters)", "یادداشت اختیاری ": "Optional note ", "دریافت": "Receive", "می‌گیرد": "receives"};
+var R={};Object.keys(D).forEach(function(k){R[D[k]]=k});
+var lang=localStorage.getItem("wsLang")||"fa";
+var mo=null;
+function g(t){t=(t||"").trim();if(!t)return null;return lang==="en"?D[t]||null:R[t]||null}
+function walk(n){
+  if(n.nodeType===3){var v=n.nodeValue;if(v&&v.trim()){var t=v.trim(),x=g(t);if(x)n.nodeValue=v.replace(t,x)}return}
+  if(n.nodeType!==1)return;
+  if(n.tagName==="SCRIPT"||n.tagName==="STYLE")return;
+  ["placeholder","title","aria-label"].forEach(function(a){var x=n.getAttribute&&n.getAttribute(a);if(x){var y=g(x);if(y)n.setAttribute(a,y)}});
+  for(var c=n.firstChild;c;c=c.nextSibling)walk(c);
+}
+function apply(){walk(document.body);document.documentElement.setAttribute("lang",lang==="en"?"en":"fa")}
+function markActive(){document.querySelectorAll(".lang-opt").forEach(function(b){b.setAttribute("data-active",b.getAttribute("data-lang")===lang?"1":"0")})}
+window.__wsSetLang=function(l){lang=(l==="en")?"en":"fa";localStorage.setItem("wsLang",lang);if(mo){mo.disconnect()}apply();markActive();if(mo){mo.observe(document.body,{childList:true,subtree:true,characterData:true})}};
+function boot(){
+  markActive();apply();
+  mo=new MutationObserver(function(muts){for(var i=0;i<muts.length;i++){var m=muts[i];if(m.type==="characterData")walk(m.target);else for(var j=0;j<m.addedNodes.length;j++)walk(m.addedNodes[j])}});
+  mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+  document.querySelectorAll(".lang-opt").forEach(function(b){b.addEventListener("click",function(){window.__wsSetLang(b.getAttribute("data-lang"))})});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+})();
+</script></body>
 </html>
