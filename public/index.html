@@ -865,7 +865,6 @@ button,input{font-family:inherit}
   display:flex;align-items:center;justify-content:center;padding:24px}
 #lockScreen.hidden{display:none}
 .lock-inner{width:100%;max-width:300px;display:flex;flex-direction:column;align-items:center;gap:18px}
-.lock-logo-full{width:100%;height:auto;display:block;border-radius:18px;box-shadow:var(--shadow-card)}
 .lock-badge{width:68px;height:68px;border-radius:22px;background:linear-gradient(150deg,var(--bg-3),var(--bg-3-hover));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);box-shadow:var(--shadow-card)}
 .lock-badge .icon{width:31px;height:31px}
 .lock-title{font-size:17px;font-weight:800;text-align:center;letter-spacing:-.01em}
@@ -1231,7 +1230,7 @@ body{
 <!-- ============ LOGIN ============ -->
 <div id="lockScreen" class="hidden">
   <div class="lock-inner">
-    <img src="icon-192.png?v=5" alt="Mini Bot" class="lock-logo-full">
+    <div class="lock-badge" style="padding:0;overflow:hidden"><img src="icon-192.png?v=5" alt="Mini Bot" style="width:100%;height:100%;object-fit:cover;display:block"></div>
     <div>
       <p class="lock-title" id="lockTitle">ورود به حساب</p>
       <p class="lock-sub" id="lockSub"> برای استفاده از این ربات وارد شوید</p>
