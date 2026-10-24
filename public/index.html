@@ -1701,41 +1701,8 @@ body{
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">حریم خصوصی و امنیت</div></div>
           <div class="subpage-body">
 
-          <style>
-            .privacy-info{background:rgba(25,111,240,.07);border:1px solid rgba(25,111,240,.18);border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.9;margin:6px 0 10px}
-            .privacy-info b{display:block;margin-bottom:2px}
-          </style>
-
-          <div class="settings-group-title"><span class="icon" data-lucide="lock"></span>امنیت حساب</div>
+          <p class="settings-hint" id="privacyHint">گزینه‌های امنیتی حساب شما به‌زودی در این بخش قرار می‌گیرد.</p>
           <div id="privacyOptions"></div>
-          <div style="display:flex;gap:8px;margin-top:4px">
-            <input class="login-input" id="privNewPass" type="password" placeholder="رمز عبور جدید (حداقل ۴ کاراکتر)" style="flex:1">
-            <button class="btn btn-primary" id="privPassSave" type="button">ذخیره</button>
-          </div>
-          <p class="settings-hint">رمز عبور برای ورود با نام کاربری استفاده می‌شود و به‌صورت هش‌شده ذخیره می‌گردد.</p>
-
-          <div class="settings-group-title"><span class="icon" data-lucide="database"></span>داده‌های شما</div>
-          <button class="btn btn-secondary btn-block" id="privExport" type="button">📥 دانلود همه داده‌های من (JSON)</button>
-          <button class="btn btn-danger btn-block" id="privWipe" type="button">🗑️ حذف همه فیش‌های ثبت‌شده</button>
-          <p class="settings-hint">داده‌های شما متعلق به خودتان است؛ هر زمان بخواهید می‌توانید یک نسخه بگیرید یا همه را پاک کنید.</p>
-
-          <div class="settings-group-title"><span class="icon" data-lucide="shield-check"></span>سیاست حریم خصوصی</div>
-          <div class="privacy-info">
-            <b>🔒 چه داده‌هایی نگه داشته می‌شود؟</b>
-            شماره واتساپ، نام نمایشی، فیش‌هایی که برای ثبت ارسال می‌کنید (مبلغ، تاریخ، شماره پیگیری) و تنظیمات گروه‌های شما.
-          </div>
-          <div class="privacy-info">
-            <b>🤖 عکس فیش‌ها</b>
-            عکس فیش فقط برای خوانش خودکار توسط هوش مصنوعی ارسال می‌شود و اطلاعات استخراج‌شده (نه خود عکس) در حساب شما ثبت می‌گردد.
-          </div>
-          <div class="privacy-info">
-            <b>🔑 رمز عبور</b>
-            رمز عبور هرگز به‌صورت خام ذخیره نمی‌شود؛ فقط هش امن آن نگه داشته می‌شود و هیچ‌کس — حتی مدیر — آن را نمی‌بیند.
-          </div>
-          <div class="privacy-info">
-            <b>🚫 عدم اشتراک با دیگران</b>
-            داده‌های شما به هیچ شخص ثالثی فروخته یا منتقل نمی‌شود و دسترسی پشتیبانی فقط برای رفع مشکل انجام می‌شود.
-          </div>
         
           </div>
         </div>
@@ -1953,63 +1920,6 @@ setInterval(function(){isReal()?liveRefresh():loadServers()},8000);
 <script>!function(){const e=document.getElementById("appModalOverlay"),t=document.getElementById("appModalTitle"),n=document.getElementById("appModalMsg"),l=document.getElementById("appModalInput"),a=document.getElementById("appModalOk"),s=document.getElementById("appModalCancel");let d=null;function o(t){if(e.classList.remove("show"),setTimeout(()=>{e.style.display="none"},180),d){const e=d;d=null,e(t)}}function i(s){return new Promise(o=>{d=o,t.textContent=s.title||"",n.textContent=s.message||"",n.style.display=s.message?"":"none",a.textContent=s.okText||"تأیید",a.className="am-ok"+(s.danger?" am-danger":""),s.input?(l.style.display="",l.value=s.defaultValue||"",l.placeholder=s.placeholder||""):(l.style.display="none",l.value=""),e.style.display="flex",requestAnimationFrame(()=>e.classList.add("show")),s.input&&setTimeout(()=>l.focus(),60)})}a.addEventListener("click",()=>{o("none"===l.style.display||l.value)}),s.addEventListener("click",()=>o("none"!==l.style.display&&null)),e.addEventListener("click",t=>{t.target===e&&o("none"!==l.style.display&&null)}),l.addEventListener("keydown",e=>{"Enter"===e.key&&(e.preventDefault(),o(l.value)),"Escape"===e.key&&(e.preventDefault(),o(null))}),window.appPrompt=(e,t,n)=>i(Object.assign({message:e,input:!0,defaultValue:t||""},n||{})),window.appConfirm=(e,t)=>i(Object.assign({message:e,input:!1},t||{}))}();
 </script>
 <script>!function(){function t(){const t=document.getElementById("wsSettingsList");t&&!t.dataset.wsInit&&(t.dataset.wsInit="1",window.addEventListener("popstate",()=>{if(window.__wsArmed&&Date.now()-window.__wsArmed<600)return void(window.__wsArmed=0);window.__wsPushed=0;var sp=document.querySelector(".ws-panel.subpage.open");if(sp){document.querySelectorAll(".ws-panel.subpage.open").forEach(e=>e.classList.remove("open"));return}var cur=document.querySelector(".panel.active"),curId=cur?String(cur.id||"").replace("panel-",""):"dashboard";"dup"===curId||"confirm"===curId?goToTab("exchange"):"dashboard"!==curId&&goToTab("dashboard")}),t.querySelectorAll(".ws-row").forEach(e=>{e.addEventListener("click",()=>{const s=e.getAttribute("data-ws"),o=document.querySelector('.ws-panel[data-ws-panel="'+s+'"]');o&&!o.classList.contains("open")&&(o.classList.add("open"),window.__wsPushed=1,history.pushState({wsSub:1},""))})})),document.querySelectorAll(".subpage-back").forEach(e=>{e.addEventListener("click",()=>{window.__wsArmed=Date.now();var p=e.closest(".ws-panel");p&&p.classList.remove("open"),window.__wsPushed&&(window.__wsPushed=0,history.back())})})}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",t):t(),document.addEventListener("click",e=>{e.target.closest&&e.target.closest('[data-tab="profile"]')&&setTimeout(t,50);e.target.closest&&e.target.closest("#profileQrBtn")&&"function"==typeof toast&&toast("QR به‌زودی فعال می‌شود")})}();
-</script>
-
-<script>!function(){
-  function init(){
-    var box = document.getElementById("privacyOptions");
-    if(!box || box.dataset.init) return;
-    box.dataset.init = "1";
-    fetch("/api/auth/me").then(function(r){return r.ok?r.json():null}).then(function(j){
-      if(j && j.username){
-        box.innerHTML = '<p class="settings-hint">نام کاربری ورود شما: <b>'+j.username.replace(/[<>&]/g,"")+'</b></p>';
-      }else{
-        box.innerHTML = '<p class="settings-hint">برای تعیین رمز عبور، اول از بخش «حساب» یک نام کاربری بسازید.</p>';
-      }
-    }).catch(function(){});
-    /* تغییر رمز عبور */
-    document.getElementById("privPassSave").addEventListener("click", async function(){
-      var pass = document.getElementById("privNewPass").value.trim();
-      if(pass.length < 4){ toast("رمز عبور حداقل ۴ کاراکتر باشد"); return; }
-      try{
-        var me = await fetch("/api/auth/me").then(function(r){return r.ok?r.json():null});
-        if(!me || !me.username){ toast("اول از بخش «حساب» نام کاربری تعیین کن"); return; }
-        if(!(await appConfirm("رمز عبور حساب شما تغییر کند؟",{title:"تغییر رمز عبور",okText:"تغییر بده"}))) return;
-        var r = await fetch("/api/profile/username",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:me.username,password:pass})});
-        var j = await r.json();
-        if(j.ok){ toast("رمز عبور با موفقیت تغییر کرد ✅"); document.getElementById("privNewPass").value=""; }
-        else toast(j.error || "خطا در تغییر رمز عبور");
-      }catch(e){ toast("خطا در ارتباط با سرور"); }
-    });
-    /* دانلود داده‌ها */
-    document.getElementById("privExport").addEventListener("click", async function(){
-      toast("در حال آماده‌سازی داده‌ها…");
-      try{
-        var r = await fetch("/api/receipts");
-        var j = await r.json();
-        var blob = new Blob([JSON.stringify(j,null,2)],{type:"application/json"});
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "minibot-my-data.json";
-        document.body.appendChild(a); a.click(); a.remove();
-        setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
-        toast("فایل داده‌های شما دانلود شد ✅");
-      }catch(e){ toast("خطا در دریافت داده‌ها"); }
-    });
-    /* حذف همه فیش‌ها */
-    document.getElementById("privWipe").addEventListener("click", async function(){
-      var ok = await appConfirm("همه فیش‌های ثبت‌شده برای همیشه حذف می‌شوند و قابل بازگشت نیستند. مطمئنی؟",{title:"حذف همه فیش‌ها",okText:"حذف کن",danger:true});
-      if(!ok) return;
-      try{
-        var r = await fetch("/api/receipts",{method:"DELETE"});
-        if(r.ok) toast("همه فیش‌ها حذف شدند ✅");
-        else toast("خطا در حذف فیش‌ها");
-      }catch(e){ toast("خطا در ارتباط با سرور"); }
-    });
-  }
-  "loading"===document.readyState?document.addEventListener("DOMContentLoaded",init):init();
-  document.addEventListener("click",function(e){e.target.closest&&e.target.closest('[data-tab="profile"]')&&setTimeout(init,50)});
-}();
 </script>
 </body>
 </html>
