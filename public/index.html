@@ -462,8 +462,9 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
       </div>
 
       <!-- لیست تنظیمات (سبک واتساپ) -->
-      <div class="ws-list" id="wsSettingsList">
-
+      <div class="ws-groups" id="wsSettingsList">        <div class="ws-group">
+          <div class="ws-caption">حساب</div>
+          <div class="ws-card">
         <div class="ws-row" data-ws="account">
           <span class="icon ws-row-icon" data-lucide="user-round"></span>
           <div class="ws-row-text">
@@ -473,7 +474,74 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           
           <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
         </div>
-        <div class="ws-panel subpage" data-ws-panel="account">
+          </div>
+        </div>
+
+        <div class="ws-group">
+          <div class="ws-caption">اشتراک و تنظیمات</div>
+          <div class="ws-card">
+        <div class="ws-row" data-ws="plan">
+          <span class="icon ws-row-icon" data-lucide="gem"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">اشتراک و پلن</div>
+            <div class="ws-row-sub">پلن فعلی، روزهای باقی‌مانده، ارتقا</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-row" data-ws="appearance">
+          <span class="icon ws-row-icon" data-lucide="palette"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">ظاهر و نمایش</div>
+            <div class="ws-row-sub">حالت روز و شب، پوسته رنگی، رنگ نام و پس‌زمینه</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-row" data-ws="lang">
+          <span class="icon ws-row-icon" data-lucide="languages"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">زبان</div>
+            <div class="ws-row-sub">فارسی</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+          </div>
+        </div>
+
+        <div class="ws-group">
+          <div class="ws-caption">امنیت</div>
+          <div class="ws-card">
+        <div class="ws-row" data-ws="privacy">
+          <span class="icon ws-row-icon" data-lucide="shield-check"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">حریم خصوصی و امنیت</div>
+            <div class="ws-row-sub">رمز عبور، دستگاه‌ها، دانلود و حذف داده‌ها</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+          </div>
+        </div>
+
+        <div class="ws-group">
+          <div class="ws-caption">پشتیبانی</div>
+          <div class="ws-card">
+        <div class="ws-row" data-ws="about">
+          <span class="icon ws-row-icon" data-lucide="info"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">درباره ما</div>
+            <div class="ws-row-sub">نسخه، ارتباط و اطلاعات برنامه</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+          </div>
+        </div>
+
+        <!-- زیرصفحه‌ها -->
+<div class="ws-panel subpage" data-ws-panel="account">
 <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">حساب کاربری</div><button class="acct-check" id="acctCheckBtn" type="button" aria-label="تأیید و ذخیره"><span class="icon" data-lucide="check"></span></button></div>
 <div class="subpage-body">
 <input type="file" id="acctEditFile" accept="image/*" style="display:none">
@@ -494,16 +562,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 </div>
 </div>
 </div>
-<div class="ws-row" data-ws="plan">
-          <span class="icon ws-row-icon" data-lucide="gem"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">اشتراک و پلن</div>
-            <div class="ws-row-sub">پلن فعلی، روزهای باقی‌مانده، ارتقا</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-panel subpage" data-ws-panel="plan">
+<div class="ws-panel subpage" data-ws-panel="plan">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">اشتراک و پلن</div></div>
           <div class="subpage-body">
 
@@ -511,17 +570,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         
           </div>
         </div>
-
-        <div class="ws-row" data-ws="appearance">
-          <span class="icon ws-row-icon" data-lucide="palette"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">ظاهر و نمایش</div>
-            <div class="ws-row-sub">حالت روز و شب، پوسته رنگی، رنگ نام و پس‌زمینه</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-panel subpage" data-ws-panel="appearance">
+<div class="ws-panel subpage" data-ws-panel="appearance">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">ظاهر و نمایش</div></div>
           <div class="subpage-body">
 
@@ -576,17 +625,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         
           </div>
         </div>
-
-        <div class="ws-row" data-ws="lang">
-          <span class="icon ws-row-icon" data-lucide="languages"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">زبان</div>
-            <div class="ws-row-sub">فارسی</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-panel subpage" data-ws-panel="lang">
+<div class="ws-panel subpage" data-ws-panel="lang">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">زبان</div></div>
           <div class="subpage-body">
             <div class="ws-list" style="margin:0">
@@ -601,17 +640,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
             </div>
           </div>
         </div>
-
-        <div class="ws-row" data-ws="privacy">
-          <span class="icon ws-row-icon" data-lucide="shield-check"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">حریم خصوصی و امنیت</div>
-            <div class="ws-row-sub">رمز عبور، دستگاه‌ها، دانلود و حذف داده‌ها</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-panel subpage" data-ws-panel="privacy">
+<div class="ws-panel subpage" data-ws-panel="privacy">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">حریم خصوصی و امنیت</div></div>
           <div class="subpage-body">
 
@@ -635,45 +664,49 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         
           </div>
         </div>
-
-        <div class="ws-row" data-ws="about">
-          <span class="icon ws-row-icon" data-lucide="info"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">درباره ما</div>
-            <div class="ws-row-sub">معرفی Mini Bot</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-panel subpage" data-ws-panel="about">
+<div class="ws-panel subpage" data-ws-panel="about">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">درباره ما</div></div>
-          <div class="subpage-body">
+          <div class="subpage-body about-body">
 
-          <div class="about-panel">
-            <div class="about-panel-mark"><span class="pbc-star">✦</span></div>
-            <div class="about-panel-title">Mini Bot</div>
-            <p class="about-panel-text">Mini Bot؛ ربات واتساپ همه‌کاره برای مدیریت گروه‌ها، فیش‌ها، پرداخت‌ها و امکانات ربات، ساده و یکجا.</p>
-          <div class="about-panel-version">Mini Bot · نسخه ۱</div>
-            <div class="about-contact">
-              <div class="about-contact-title">ارتباط با ما</div>
-              <div class="about-contact-actions">
-                <a class="about-contact-btn whatsapp" href="https://wa.me/93745872028" target="_blank" rel="noopener noreferrer" aria-label="ارتباط در واتساپ">
-                  <svg class="contact-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.9-1.3A9.5 9.5 0 1 0 12 2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                    <path d="M8.7 7.8c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.6.7c.7 1.3 1.6 2.2 2.9 2.9l.7-.6c.2-.2.4-.2.7-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.3-1 .5-1.6.4-2-.3-3.8-1.6-5.2-3.1-1.5-1.4-2.8-3.2-3.1-5.2-.1-.6.1-1.2.4-1.6Z" fill="currentColor"/>
-                  </svg>
-                  <span>واتساپ</span>
-                </a>
-                <a class="about-contact-btn telegram" href="https://t.me/minibot_af" target="_blank" rel="noopener noreferrer" aria-label="ارتباط در تلگرام">
-                  <svg class="contact-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="m21.2 4.1-3.1 15.1c-.2 1.1-.8 1.4-1.7.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.4-.1-.6-.6-.2L6 13.1l-4.6-1.5c-1-.3-1-1 .2-1.5L19.7 3c.9-.3 1.7.2 1.5 1.1Z" fill="currentColor"/>
-                  </svg>
-                  <span>تلگرام</span>
-                </a>
-              </div>
+          <div class="ab-hero">
+            <div class="ab-logo" aria-hidden="true"><span class="ab-star">✦</span></div>
+            <div class="ab-name">Mini Bot</div>
+            <div class="ab-tag">ربات واتساپ برای خواندن فیش، تشخیص فیش تکراری و تأیید پرداخت. ساده و یکجا.</div>
+            <div class="ab-chip">نسخه ۱</div>
+          </div>
+
+          <div class="ab-group">
+            <div class="ab-caption">اطلاعات برنامه</div>
+            <div class="ab-card">
+              <div class="ab-row"><span class="ab-k">نسخه</span><span class="ab-v">۱</span></div>
+              <div class="ab-row"><span class="ab-k">پلتفرم</span><span class="ab-v">واتساپ</span></div>
+              <div class="ab-row"><span class="ab-k">دسترسی</span><span class="ab-v">پنل وب و اپ اندروید</span></div>
             </div>
           </div>
-        
+
+          <div class="ab-group">
+            <div class="ab-caption">ارتباط با ما</div>
+            <div class="ab-card">
+              <a class="ab-link" href="https://wa.me/93745872028" target="_blank" rel="noopener noreferrer">
+                <span class="ab-ic wa" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.9-1.3A9.5 9.5 0 1 0 12 2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.7 7.8c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.6.7c.7 1.3 1.6 2.2 2.9 2.9l.7-.6c.2-.2.4-.2.7-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.3-1 .5-1.6.4-2-.3-3.8-1.6-5.2-3.1-1.5-1.4-2.8-3.2-3.1-5.2-.1-.6.1-1.2.4-1.6Z" fill="currentColor"/></svg></span>
+                <span class="ab-link-text"><span class="ab-link-title">پشتیبانی واتساپ</span><span class="ab-link-sub">پاسخ مستقیم تیم پشتیبانی</span></span>
+                <span class="icon ab-chev" data-lucide="chevron-left"></span>
+              </a>
+              <a class="ab-link" href="https://t.me/minibot_af" target="_blank" rel="noopener noreferrer">
+                <span class="ab-ic tg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m21.2 4.1-3.1 15.1c-.2 1.1-.8 1.4-1.7.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.4-.1-.6-.6-.2L6 13.1l-4.6-1.5c-1-.3-1-1 .2-1.5L19.7 3c.9-.3 1.7.2 1.5 1.1Z" fill="currentColor"/></svg></span>
+                <span class="ab-link-text"><span class="ab-link-title">تلگرام</span><span class="ab-link-sub">کانال و پشتیبانی تلگرام</span></span>
+                <span class="icon ab-chev" data-lucide="chevron-left"></span>
+              </a>
+              <a class="ab-link" href="https://minibot.online" target="_blank" rel="noopener noreferrer">
+                <span class="ab-ic web" aria-hidden="true"><span class="icon" data-lucide="globe"></span></span>
+                <span class="ab-link-text"><span class="ab-link-title">وب‌سایت رسمی</span><span class="ab-link-sub">minibot.online</span></span>
+                <span class="icon ab-chev" data-lucide="chevron-left"></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ab-foot">© ۲۰۲۶ Mini Bot · ساخته‌شده برای صرافی‌ها</div>
+
           </div>
         </div>
 
