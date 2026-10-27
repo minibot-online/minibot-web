@@ -462,9 +462,8 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
       </div>
 
       <!-- لیست تنظیمات (سبک واتساپ) -->
-      <div class="ws-groups" id="wsSettingsList">        <div class="ws-group">
-          <div class="ws-caption">حساب</div>
-          <div class="ws-card">
+      <div class="ws-list" id="wsSettingsList">
+
         <div class="ws-row" data-ws="account">
           <span class="icon ws-row-icon" data-lucide="user-round"></span>
           <div class="ws-row-text">
@@ -474,74 +473,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           
           <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
         </div>
-          </div>
-        </div>
-
-        <div class="ws-group">
-          <div class="ws-caption">اشتراک و تنظیمات</div>
-          <div class="ws-card">
-        <div class="ws-row" data-ws="plan">
-          <span class="icon ws-row-icon" data-lucide="gem"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">اشتراک و پلن</div>
-            <div class="ws-row-sub">پلن فعلی، روزهای باقی‌مانده، ارتقا</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-row" data-ws="appearance">
-          <span class="icon ws-row-icon" data-lucide="palette"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">ظاهر و نمایش</div>
-            <div class="ws-row-sub">حالت روز و شب، پوسته رنگی، رنگ نام و پس‌زمینه</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-        <div class="ws-row" data-ws="lang">
-          <span class="icon ws-row-icon" data-lucide="languages"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">زبان</div>
-            <div class="ws-row-sub">فارسی</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-          </div>
-        </div>
-
-        <div class="ws-group">
-          <div class="ws-caption">امنیت</div>
-          <div class="ws-card">
-        <div class="ws-row" data-ws="privacy">
-          <span class="icon ws-row-icon" data-lucide="shield-check"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">حریم خصوصی و امنیت</div>
-            <div class="ws-row-sub">رمز عبور، دستگاه‌ها، دانلود و حذف داده‌ها</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-          </div>
-        </div>
-
-        <div class="ws-group">
-          <div class="ws-caption">پشتیبانی</div>
-          <div class="ws-card">
-        <div class="ws-row" data-ws="about">
-          <span class="icon ws-row-icon" data-lucide="info"></span>
-          <div class="ws-row-text">
-            <div class="ws-row-title">درباره ما</div>
-            <div class="ws-row-sub">نسخه، ارتباط و اطلاعات برنامه</div>
-          </div>
-          
-          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
-        </div>
-          </div>
-        </div>
-
-        <!-- زیرصفحه‌ها -->
-<div class="ws-panel subpage" data-ws-panel="account">
+        <div class="ws-panel subpage" data-ws-panel="account">
 <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">حساب کاربری</div><button class="acct-check" id="acctCheckBtn" type="button" aria-label="تأیید و ذخیره"><span class="icon" data-lucide="check"></span></button></div>
 <div class="subpage-body">
 <input type="file" id="acctEditFile" accept="image/*" style="display:none">
@@ -562,7 +494,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 </div>
 </div>
 </div>
-<div class="ws-panel subpage" data-ws-panel="plan">
+        <div class="ws-row" data-ws="plan">
+          <span class="icon ws-row-icon" data-lucide="gem"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">اشتراک و پلن</div>
+            <div class="ws-row-sub">پلن فعلی، روزهای باقی‌مانده، ارتقا</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-panel subpage" data-ws-panel="plan">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">اشتراک و پلن</div></div>
           <div class="subpage-body">
 
@@ -570,7 +511,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         
           </div>
         </div>
-<div class="ws-panel subpage" data-ws-panel="appearance">
+        <div class="ws-row" data-ws="appearance">
+          <span class="icon ws-row-icon" data-lucide="palette"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">ظاهر و نمایش</div>
+            <div class="ws-row-sub">حالت روز و شب، پوسته رنگی، رنگ نام و پس‌زمینه</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-panel subpage" data-ws-panel="appearance">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">ظاهر و نمایش</div></div>
           <div class="subpage-body">
 
@@ -625,7 +575,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         
           </div>
         </div>
-<div class="ws-panel subpage" data-ws-panel="lang">
+        <div class="ws-row" data-ws="lang">
+          <span class="icon ws-row-icon" data-lucide="languages"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">زبان</div>
+            <div class="ws-row-sub">فارسی</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-panel subpage" data-ws-panel="lang">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">زبان</div></div>
           <div class="subpage-body">
             <div class="ws-list" style="margin:0">
@@ -640,7 +599,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
             </div>
           </div>
         </div>
-<div class="ws-panel subpage" data-ws-panel="privacy">
+        <div class="ws-row" data-ws="privacy">
+          <span class="icon ws-row-icon" data-lucide="shield-check"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">حریم خصوصی و امنیت</div>
+            <div class="ws-row-sub">رمز عبور، دستگاه‌ها، دانلود و حذف داده‌ها</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-panel subpage" data-ws-panel="privacy">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">حریم خصوصی و امنیت</div></div>
           <div class="subpage-body">
 
@@ -664,7 +632,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         
           </div>
         </div>
-<div class="ws-panel subpage" data-ws-panel="about">
+        <div class="ws-row" data-ws="about">
+          <span class="icon ws-row-icon" data-lucide="info"></span>
+          <div class="ws-row-text">
+            <div class="ws-row-title">درباره ما</div>
+            <div class="ws-row-sub">معرفی Mini Bot</div>
+          </div>
+          
+          <span class="icon ws-row-chev" data-lucide="chevron-left"></span>
+        </div>
+        <div class="ws-panel subpage" data-ws-panel="about">
           <div class="subpage-head"><button class="subpage-back" type="button" aria-label="بازگشت"><span class="icon" data-lucide="arrow-right"></span></button><div class="subpage-title">درباره ما</div></div>
           <div class="subpage-body about-body">
 
