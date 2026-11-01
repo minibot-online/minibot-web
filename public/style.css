@@ -158,3 +158,14 @@
 .ga-x::before,.ga-x::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.8px;border-radius:2px;background:currentColor}
 .ga-x::before{transform:translateY(-50%) rotate(45deg)}
 .ga-x::after{transform:translateY(-50%) rotate(-45deg)}
+
+/* آیکن‌ها به سبک سایت اصلی: خط نازک، بدون کادر و پس‌زمینه */
+svg.lucide{stroke-width:1.7}
+.acct-check svg.lucide{stroke-width:2.3}
+.lock-ico{width:auto;height:auto;background:none;border:0;border-radius:0;box-shadow:none;margin:0 auto 12px;color:var(--accent)}
+.lock-ico .icon{width:34px;height:34px}
+:root[data-theme=dark] .lock-ico{background:none;border:0;color:var(--accent-2)}
+.connect-banner-icon{background:none;border:0;border-radius:0;width:26px;height:26px;color:var(--warning)}
+.lock-badge{background:none;border:0;box-shadow:none}
+.pl-badge{background:none;box-shadow:none}
+#panel-profile .ws-row-icon{background:none!important;color:var(--accent)!important;padding:0;width:26px;height:26px;border-radius:0}
