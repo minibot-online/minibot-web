@@ -362,12 +362,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         <div class="card-head">
           <div class="ico-badge" data-lucide="users"></div>
           <h2>گروه‌ ها</h2>
-          <button class="btn btn-secondary btn-sm" id="refreshGroups"><span class="icon" data-lucide="refresh-cw" style="width:14px;height:14px"></span>بروزرسانی</button>
-          <button class="btn btn-secondary btn-sm" id="selectAllGroups">انتخاب همه</button>
+          <button class="gh-btn" id="refreshGroups" title="بروزرسانی" aria-label="بروزرسانی"><span class="icon" data-lucide="refresh-cw"></span></button>
+          <button class="gh-btn gh-all" id="selectAllGroups" title="انتخاب همه گروه‌ها">انتخاب همه</button>
         </div>
         <div id="selectedGroupBox"></div>
-        <div class="hint-line">گروه های مورد نظر خود را انتخاب کنید ✔️ </div>
+        <label class="grp-search" id="groupSearchWrap">
+          <span class="icon" data-lucide="search"></span>
+          <input id="groupSearch" type="search" placeholder="جستجوی گروه…" autocomplete="off" spellcheck="false">
+        </label>
         <div class="group-list" id="groupList"></div>
+        <div class="hint-line">گروه‌های مورد نظر را بزن تا سریع انتخاب شوند ✔️</div>
       </div>
 
       <div class="card">
@@ -812,7 +816,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 
 
-<script src="app.js?v=34"></script>
+<script src="app.js?v=36"></script>
         <!-- شیت ساخت حساب: ۳ گزینه -->
         <div class="ss-wrap" id="signupSheet">
           <div class="ss-box">
