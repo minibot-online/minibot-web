@@ -106,22 +106,3 @@
 }
 .card-head .ico-badge svg,
 .ico-badge svg{width:19px!important;height:19px!important}
-
-/* ---------- لودر شروع (تمیز و هم‌خانواده با پنل) ---------- */
-#bootSplash,#appLoader{
-  position:fixed;inset:0;z-index:600;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;
-  background:radial-gradient(900px 480px at 85% -8%,rgba(25,111,240,.10),transparent 60%),radial-gradient(700px 420px at -10% 10%,rgba(79,155,255,.07),transparent 55%),var(--bg);
-}
-#bootSplash{z-index:900}
-#appLoader.is-hiding{animation:alFadeOut .32s ease forwards}
-@keyframes alFadeOut{to{opacity:0;transform:scale(1.015)}}
-.al-brand{font-size:19px;font-weight:800;letter-spacing:.3px;color:var(--text);direction:ltr;line-height:1}
-.al-brand span{color:var(--accent)}
-.al-dots{display:flex;gap:7px;align-items:center;height:10px}
-.al-dots i{width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.55;animation:alBounce 1.05s ease-in-out infinite}
-.al-dots i:nth-child(2){animation-delay:.15s}
-.al-dots i:nth-child(3){animation-delay:.3s}
-@keyframes alBounce{0%,80%,100%{opacity:.45;transform:translateY(0) scale(.92)}40%{opacity:1;transform:translateY(-4px) scale(1)}}
-.al-note{font-size:12.5px;color:var(--text-dim);letter-spacing:.1px}
-@media (prefers-reduced-motion:reduce){.al-dots i{animation:none;opacity:.75}}
