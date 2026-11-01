@@ -150,3 +150,9 @@
 }
 .card-head .gh-btn{overflow:hidden}
 .card-head .gh-btn .loader{transform:scale(.72)}
+
+/* ضربدر نوار خلاصه: با CSS تا در رندر مجدد چشمک نزند */
+.ga-x{position:relative;display:block;width:12px;height:12px}
+.ga-x::before,.ga-x::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.8px;border-radius:2px;background:currentColor}
+.ga-x::before{transform:translateY(-50%) rotate(45deg)}
+.ga-x::after{transform:translateY(-50%) rotate(-45deg)}
