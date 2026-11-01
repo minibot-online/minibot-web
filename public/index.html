@@ -7,11 +7,16 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png?v=6">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=6">
 <link rel="apple-touch-icon" href="icon-192.png?v=6">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mini Bot">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Mini Bot</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=48">
+<link rel="stylesheet" href="style.css?v=49">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -687,6 +692,16 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
   </div>
 
+  <div id="pwaPrompt" class="pwa-prompt" hidden>
+    <span class="icon pwa-ico" data-lucide="download"></span>
+    <div class="pwa-copy">
+      <span class="pwa-title">نصب مینی‌بات</span>
+      <span class="pwa-sub" id="pwaSub">مثل اپلیکیشن روی گوشی نصب شود</span>
+    </div>
+    <button class="pwa-ok" id="pwaInstallBtn" type="button">نصب</button>
+    <button class="pwa-x" id="pwaCloseBtn" type="button" aria-label="بستن"><span class="icon" data-lucide="x"></span></button>
+  </div>
+
   <nav class="bottom-nav" aria-label="ناوبری اصلی">
     <div class="nav-brand">
       <div class="nav-brand-mark">✦</div>
@@ -815,6 +830,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 
 
+<script src="pwa.js?v=1" defer></script>
 <script src="app.js?v=48"></script>
         <!-- شیت ساخت حساب: ۳ گزینه -->
         <div class="ss-wrap" id="signupSheet">
