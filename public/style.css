@@ -88,3 +88,21 @@
 .ab-link-sub{font-size:11.5px;color:var(--text-faint)}
 .ab-chev{width:15px;height:15px;flex-shrink:0;color:var(--text-faint)}
 .ab-foot{text-align:center;font-size:11px;color:var(--text-faint);padding:26px 20px 6px;line-height:1.9}
+
+/* آیکن‌های سرِ کارت‌ها بدون کادر (درخواست: مستقل و بدون باکس) */
+.card-head .ico-badge,
+.ico-badge{
+  width:20px!important;
+  height:20px!important;
+  padding:0!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.card-head .ico-badge svg,
+.ico-badge svg{width:19px!important;height:19px!important}
