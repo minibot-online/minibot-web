@@ -58,4 +58,4 @@ npx wrangler deploy
 1. `minibot` — کد سرور ربات (نسخه‌ی هماهنگ: v12.2.6)
 2. `minibot-admin` — پنل مدیریت
 3. `minibot-site` — سایت معرفی
-4. `minibot-android` و `minibot-quick` — اپ‌های اندروید همین پنل‌ها
+4. `minibot-quick` — اپ سریع مدیریت
