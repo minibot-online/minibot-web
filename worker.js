@@ -3,7 +3,7 @@
 // v13 چند-سروری: اگر کلاینت هدر x-server (شناسه سرور انتخاب‌شده در صفحه ورود) بفرستد،
 // درخواست به همان سرور می‌رود؛ لیست مجازِ سرورها از سرور اصلی (UPSTREAM) گرفته می‌شود.
 
-const UPSTREAM = "https://minibot-mine.onrender.com"; // سرور ۱ — نگهدارنده لیست سرورها
+const UPSTREAM = "https://minibot-3m0y.onrender.com"; // سرور ۱ — نگهدارنده لیست سرورها
 
 let _regCache = { ts: 0, list: [] };
 async function getRegistry() {
