@@ -386,6 +386,8 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <h2>فیش‌های ثبت‌شده</h2>
           <span class="badge-count" id="receiptsCount">۰</span>
           <span class="spacer"></span>
+          <button class="btn btn-primary btn-sm" id="manualReceiptBtn" title="ثبت فیش از گوشی"><span class="icon" data-lucide="upload" style="width:14px;height:14px"></span>ثبت فیش</button>
+          <input type="file" id="manualReceiptFile" accept="image/*,application/pdf" style="display:none">
           <button class="btn btn-icon" id="refreshReceipts"><span class="icon" data-lucide="refresh-cw"></span></button>
           <button class="btn btn-danger btn-sm" id="clearAllReceipts"><span class="icon" data-lucide="trash-2" style="width:14px;height:14px"></span>پاک‌سازی</button>
         </div>
@@ -837,7 +839,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 <script src="pwa.js?v=1" defer></script>
 <script src="plan.js?v=2" defer></script>
-<script src="app.js?v=50"></script>
+<script src="app.js?v=51"></script>
         <!-- شیت ساخت حساب: ۳ گزینه -->
         <div class="ss-wrap" id="signupSheet">
           <div class="ss-box">
@@ -979,6 +981,119 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
   }
   apply();
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init)}else{init()}
+})();
+</script>
+<script>
+/* ===== v22: ثبت دستی فیش از پنل — فایل گوشی مستقیم به ربات می‌رود
+   همان مسیر تشخیص تکراری واتساپ را طی می‌کند (هش فایل + مقایسه با مدل) ===== */
+(function(){
+  var btn = document.getElementById("manualReceiptBtn");
+  var inp = document.getElementById("manualReceiptFile");
+  if(!btn || !inp) return;
+  var MAX_RAW = 5 * 1024 * 1024;   /* بالاتر از این، سمت گوشی کوچک می‌شود */
+  var busy = false;
+
+  function show(msg, ms){
+    if(typeof window.toast === "function"){ try{ window.toast(String(msg), ms || 3200); return; }catch(e){} }
+    var t = document.getElementById("toast");
+    if(!t){ return; }
+    t.textContent = String(msg);
+    t.classList.add("show");
+    clearTimeout(t._t);
+    t._t = setTimeout(function(){ t.classList.remove("show"); }, ms || 3200);
+  }
+  function setBusy(v){
+    busy = v;
+    btn.disabled = v;
+    btn.style.opacity = v ? "0.6" : "";
+    btn.style.pointerEvents = v ? "none" : "";
+  }
+  function refreshList(){
+    var r = document.getElementById("refreshReceipts");
+    if(r) r.click();
+  }
+  function fileToDataUrl(file, ok, bad){
+    var fr = new FileReader();
+    fr.onload = function(){ ok(String(fr.result || "")); };
+    fr.onerror = function(){ bad("خواندن فایل ناموفق بود"); };
+    fr.readAsDataURL(file);
+  }
+  function downscale(file, ok, bad){
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function(){
+      try{
+        var max = 1600;
+        var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+        var scale = Math.min(1, max / Math.max(w, h));
+        var c = document.createElement("canvas");
+        c.width = Math.max(1, Math.round(w * scale));
+        c.height = Math.max(1, Math.round(h * scale));
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        var out = c.toDataURL("image/jpeg", 0.9);
+        URL.revokeObjectURL(url);
+        ok(out);
+      }catch(e){
+        URL.revokeObjectURL(url);
+        bad("آماده‌سازی عکس ناموفق بود");
+      }
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); bad("این فایل عکس نیست"); };
+    img.src = url;
+  }
+  function send(dataUrl, name){
+    setBusy(true);
+    show("در حال خواندن فیش…", 60000);
+    fetch("/api/receipts/manual", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ file: dataUrl, name: name || "" })
+    }).then(function(r){
+      return r.text().then(function(txt){
+        var out = null;
+        try{ out = JSON.parse(txt); }catch(e){}
+        if(!out) out = { ok: false, error: r.status === 413 ? "حجم فایل زیاد است" : "ارتباط با سرور برقرار نشد" };
+        return out;
+      });
+    }).then(function(res){
+      setBusy(false);
+      if(res && res.status === "saved"){
+        show("✅ فیش ثبت شد", 3000);
+        refreshList();
+        return;
+      }
+      if(res && res.status === "duplicate"){
+        var m = res.matched || {};
+        var when = m.date ? new Date(m.date).toLocaleString("fa-IR") : "";
+        var amt = (m.amount || "") + " " + (m.currency || "");
+        show("♻️ این فیش تکراری است" + (amt.trim() ? " — " + amt.trim() : "") + (when ? " — " + when : ""), 5000);
+        return;
+      }
+      show((res && (res.error || res.message)) || "ثبت نشد", 4200);
+    }).catch(function(){
+      setBusy(false);
+      show("ارتباط با سرور برقرار نشد", 4000);
+    });
+  }
+  function handleFolderlessFile(file){
+    var isPdf = /pdf/i.test(file.type || "") || /\.pdf$/i.test(file.name || "");
+    if(file.size > 14 * 1024 * 1024){ show("حجم فایل زیاد است (حداکثر ۱۴ مگابایت)"); return; }
+    if(isPdf || file.size <= MAX_RAW){
+      fileToDataUrl(file, function(u){ send(u, file.name || ""); }, show);
+      return;
+    }
+    downscale(file, function(u){ send(u, file.name || ""); }, show);
+  }
+
+  btn.addEventListener("click", function(){ if(!busy) inp.click(); });
+  inp.addEventListener("change", function(){
+    var f = inp.files && inp.files[0];
+    inp.value = "";
+    if(f) handleFolderlessFile(f);
+  });
 })();
 </script>
 </body>
