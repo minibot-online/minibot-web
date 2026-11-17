@@ -329,3 +329,21 @@ svg.lucide{stroke-width:1.7}
 @media (prefers-reduced-motion:reduce){
   #appLoader .ldr-tick{ animation:none; stroke-width:34 }
 }
+
+/* ================= آیکون‌های «درباره ما» — لوگوی اصلی (v27) ================= */
+.ab-ic.wa,
+.ab-ic.tg,
+.ab-ic.web{
+  background:none;
+  box-shadow:none;
+  color:var(--text);
+}
+.ab-ic.wa{ color:#21c25e }
+.ab-ic.tg{ color:#2aabee }
+.ab-ic.web{ color:var(--accent) }
+.ab-ic.wa svg,
+.ab-ic.tg svg,
+.ab-ic.web svg{
+  width:30px;
+  height:30px;
+}
