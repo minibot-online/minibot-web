@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -268,7 +268,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <div class="ico-badge" data-lucide="layout-grid"></div>
           <h2>قابلیت‌های ربات</h2>
         </div>
-        <div class="toggle-row">
+        <div class="toggle-row is-link" data-goto="exchange" role="button" tabindex="0" aria-label="رفتن به جزئیات تشخیص فیش تکراری">
           <div class="toggle-label">
             <b style="font-size:14.5px"> تشخیص فیش تکراری</b>
             <span class="sub" id="dupStatus">فیش گروه‌ها بررسی و تکراری‌ها علامت می‌خورند</span>
@@ -835,6 +835,28 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 <script src="pwa.js?v=1" defer></script>
 <script src="plan.js?v=2" defer></script>
 <script src="app.js?v=53"></script>
+<script>
+/* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → تب صرافی (جزئیات) */
+(function(){
+  function go(el){
+    var tab = el.getAttribute("data-goto");
+    var btn = document.querySelector('.navbtn[data-tab="' + tab + '"]');
+    if(btn){ btn.click(); window.scrollTo(0,0); return true; }
+    return false;
+  }
+  document.addEventListener("click", function(ev){
+    var row = ev.target.closest ? ev.target.closest("[data-goto]") : null;
+    if(!row) return;
+    if(ev.target.closest(".toggle-switch")) return; /* خود کلید، فقط وضعیت را عوض کند */
+    if(go(row)) ev.preventDefault();
+  }, false);
+  document.addEventListener("keydown", function(ev){
+    if(ev.key !== "Enter" && ev.key !== " ") return;
+    var row = document.activeElement;
+    if(row && row.hasAttribute && row.hasAttribute("data-goto")){ ev.preventDefault(); go(row); }
+  }, false);
+})();
+</script>
         <!-- شیت ساخت حساب: ۳ گزینه -->
         <div class="ss-wrap" id="signupSheet">
           <div class="ss-box">
