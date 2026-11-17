@@ -358,7 +358,7 @@ svg.lucide{stroke-width:1.7}
     height:64px;
     margin:0;
     padding:6px;
-    border-radius:26px;
+    border-radius:32px;
     background:var(--bg-2);
     -webkit-backdrop-filter:blur(20px) saturate(1.2);
     backdrop-filter:blur(20px) saturate(1.2);
@@ -372,10 +372,10 @@ svg.lucide{stroke-width:1.7}
   }
   .bottom-nav .navbtn{
     min-height:52px;
-    border-radius:20px;
+    border-radius:24px;
   }
   .bottom-nav .nav-indicator{
-    border-radius:20px;
+    border-radius:26px;
   }
   .panel{
     padding-bottom:calc(90px + var(--safe-bottom));
