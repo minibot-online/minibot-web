@@ -378,7 +378,7 @@ svg.lucide{stroke-width:1.7}
     border-radius:26px;
   }
   .panel{
-    padding-bottom:calc(90px + var(--safe-bottom));
+    padding-bottom:calc(20px + var(--safe-bottom));
   }
   .pwa-prompt{
     bottom:calc(84px + var(--safe-bottom));
