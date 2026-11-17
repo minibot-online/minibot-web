@@ -268,7 +268,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <div class="ico-badge" data-lucide="layout-grid"></div>
           <h2>قابلیت‌های ربات</h2>
         </div>
-        <div class="toggle-row is-link" data-goto="exchange" role="button" tabindex="0" aria-label="رفتن به جزئیات تشخیص فیش تکراری">
+        <div class="toggle-row is-link" data-goto="dup" role="button" tabindex="0" aria-label="رفتن به صفحه جزئیات تشخیص فیش تکراری">
           <div class="toggle-label">
             <b style="font-size:14.5px"> تشخیص فیش تکراری</b>
             <span class="sub" id="dupStatus">فیش گروه‌ها بررسی و تکراری‌ها علامت می‌خورند</span>
@@ -836,10 +836,13 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 <script src="plan.js?v=2" defer></script>
 <script src="app.js?v=53"></script>
 <script>
-/* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → تب صرافی (جزئیات) */
+/* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → صفحه‌ی جزئیات همان بخش */
 (function(){
   function go(el){
     var tab = el.getAttribute("data-goto");
+    /* اگر صفحه‌ی جزئیات همان بخش وجود دارد، مستقیم همان باز شود */
+    var deep = document.querySelector('.ex-row[data-open="' + tab + '"]');
+    if(deep){ deep.click(); window.scrollTo(0,0); return true; }
     var btn = document.querySelector('.navbtn[data-tab="' + tab + '"]');
     if(btn){ btn.click(); window.scrollTo(0,0); return true; }
     return false;
