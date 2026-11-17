@@ -367,7 +367,9 @@ svg.lucide{stroke-width:1.7}
   }
   @supports (background:color-mix(in srgb, red 50%, transparent)){
     .bottom-nav{
-      background:color-mix(in srgb, var(--bg-2) 84%, transparent);
+      background:color-mix(in srgb, var(--bg-2) 52%, transparent);
+      -webkit-backdrop-filter:blur(26px) saturate(1.35);
+      backdrop-filter:blur(26px) saturate(1.35);
     }
   }
   .bottom-nav .navbtn{
