@@ -94,7 +94,9 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 </head>
 <body>
 <!-- بوت‌اسپلش: تا تعیین وضعیت ورود، هیچ صفحه‌ای فلاش نمی‌زند -->
-<div id="bootSplash" style="position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;background:#f5f7f9"><div style="width:36px;height:36px;border:3px solid #dbe2ec;border-top-color:#2052a5;border-radius:50%;animation:mbspin .9s linear infinite"></div></div>
+<div id="bootSplash" style="position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;background:#f5f7f9">
+  <div id="bootLottie" role="status" aria-label="در حال بارگذاری" style="width:114px;height:180px"></div>
+</div>
 
 <!-- ============ LOGIN ============ -->
 <div id="lockScreen" class="hidden">
@@ -975,6 +977,8 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 <script src="pwa.js?v=9" defer></script>
 <script src="plan.js?v=2" defer></script>
+<script src="vendor/lottie.min.js"></script>
+<script src="boot-loader.js?v=1"></script>
 <script src="app.js?v=60"></script>
 <script>
 /* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → صفحه‌ی جزئیات همان بخش */
