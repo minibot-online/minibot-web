@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=16">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -434,22 +434,27 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <div class="ico-badge" data-lucide="credit-card"></div>
           <h2>تأیید کننده</h2>
         </div>
+        <div class="hint-line">یکی از دو روش را انتخاب کن؛ هر کدام صفحه‌ی خودش را دارد.</div>
 
-        <div id="ownerBox"></div>
-        <div class="owner-add">
-          <input id="ownerAddNumber" type="tel" placeholder="937XXXXXXXXX">
-          <button class="btn btn-secondary btn-sm" id="ownerAddBtn">افزودن</button>
+        <div class="opt-list">
+          <button type="button" class="opt-row" data-goto="vphone">
+            <span class="opt-ico"><span class="icon" data-lucide="phone"></span></span>
+            <span class="opt-text">
+              <b>شماره تلفن خصوصی</b>
+              <span class="opt-sub" id="optPhoneSub">شماره‌ای که فیش‌ها برایش فرستاده می‌شود</span>
+            </span>
+            <span class="icon opt-chev" data-lucide="chevron-left"></span>
+          </button>
+
+          <button type="button" class="opt-row" data-goto="vgroups">
+            <span class="opt-ico"><span class="icon" data-lucide="users-round"></span></span>
+            <span class="opt-text">
+              <b>گروه‌ها</b>
+              <span class="opt-sub" id="optGroupsSub">فیش‌ها به گروه(های) منتخب می‌روند</span>
+            </span>
+            <span class="icon opt-chev" data-lucide="chevron-left"></span>
+          </button>
         </div>
-        <div class="hint-line">شماره تأیید کننده را با کد کشور وارد کن، مثل 937XXXXXXXXX</div>
-
-        <div class="card-sep"></div>
-
-        <div class="card-subhead">
-          <h3><span class="icon" data-lucide="users-round"></span>گروه‌های تأیید کننده</h3>
-          <button class="btn btn-secondary btn-sm" id="verifierClearBtn">لغو همه</button>
-        </div>
-        <div class="hint-line">به‌جای یک شماره، فیش‌ها به گروه(های) منتخب می‌روند — ری‌اکشن هر کس در آن گروه روی پیام اصلی اعمال می‌شود</div>
-        <div class="group-list" id="verifierGroupList"></div>
       </div>
 
       <div class="card">
@@ -471,6 +476,39 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         <div id="confirmQueue"></div>
       </div>
 
+    </section>
+
+<!-- ---------- VERIFIER PHONE ---------- -->
+    <section class="panel" id="panel-vphone">
+      <div class="section-title"><button class="back-btn" data-back="confirm"><span class="icon" data-lucide="arrow-right"></span>تأیید کننده</button><span>شماره تلفن خصوصی</span></div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="ico-badge" data-lucide="phone"></div>
+          <h2>شماره تلفن خصوصی</h2>
+        </div>
+        <div id="ownerBox"></div>
+        <div class="owner-add">
+          <input id="ownerAddNumber" type="tel" placeholder="937XXXXXXXXX">
+          <button class="btn btn-secondary btn-sm" id="ownerAddBtn">افزودن</button>
+        </div>
+        <div class="hint-line">شماره تأیید کننده را با کد کشور وارد کن، مثل 937XXXXXXXXX</div>
+      </div>
+    </section>
+
+    <!-- ---------- VERIFIER GROUPS ---------- -->
+    <section class="panel" id="panel-vgroups">
+      <div class="section-title"><button class="back-btn" data-back="confirm"><span class="icon" data-lucide="arrow-right"></span>تأیید کننده</button><span>گروه‌های تأیید کننده</span></div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="ico-badge" data-lucide="users-round"></div>
+          <h2>گروه‌های تأیید کننده</h2>
+          <button class="btn btn-secondary btn-sm" id="verifierClearBtn">لغو همه</button>
+        </div>
+        <div class="hint-line">به‌جای یک شماره، فیش‌ها به گروه(های) منتخب می‌روند — ری‌اکشن هر کس در آن گروه روی پیام اصلی اعمال می‌شود</div>
+        <div class="group-list" id="verifierGroupList"></div>
+      </div>
     </section>
 
 <!-- ---------- USER PROFILE (with account controls preserved) ---------- -->
@@ -855,7 +893,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 <script src="pwa.js?v=1" defer></script>
 <script src="plan.js?v=2" defer></script>
-<script src="app.js?v=55"></script>
+<script src="app.js?v=56"></script>
 <script>
 /* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → صفحه‌ی جزئیات همان بخش */
 (function(){
@@ -864,6 +902,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
     /* اگر صفحه‌ی جزئیات همان بخش وجود دارد، مستقیم همان باز شود */
     var deep = document.querySelector('.ex-row[data-open="' + tab + '"]');
     if(deep){ deep.click(); window.scrollTo(0,0); return true; }
+    if(window.__mbGo && document.getElementById('panel-' + tab)){ window.__mbGo(tab); window.scrollTo(0,0); return true; }
     var btn = document.querySelector('.navbtn[data-tab="' + tab + '"]');
     if(btn){ btn.click(); window.scrollTo(0,0); return true; }
     return false;
@@ -1135,6 +1174,33 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
     inp.value = "";
     if(f) handleFolderlessFile(f);
   });
+})();
+
+/* خلاصه‌ی وضعیت دو گزینه‌ی کارت تأیید کننده */
+(function(){
+  function upd(){
+    var numEl=document.querySelector('#ownerBox .selected-info .jid');
+    var pSub=document.getElementById('optPhoneSub');
+    if(pSub){
+      pSub.textContent = numEl && numEl.textContent.trim()
+        ? ('فعلی: ' + numEl.textContent.trim())
+        : 'شماره‌ای که فیش‌ها برایش فرستاده می‌شود';
+    }
+    var gSub=document.getElementById('optGroupsSub');
+    if(gSub){
+      var n=document.querySelectorAll('#verifierGroupList .group-item.selected').length;
+      gSub.textContent = n ? (n + ' گروه انتخاب شده') : 'فیش‌ها به گروه(های) منتخب می‌روند';
+    }
+  }
+  function boot(){
+    var a=document.getElementById('ownerBox'), b=document.getElementById('verifierGroupList');
+    if(window.MutationObserver){
+      if(a) new MutationObserver(upd).observe(a,{childList:true,subtree:true,characterData:true});
+      if(b) new MutationObserver(upd).observe(b,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    }
+    upd(); setInterval(upd, 1500);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
 })();
 </script>
 </body>

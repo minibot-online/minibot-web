@@ -644,3 +644,35 @@ svg.lucide{stroke-width:1.7}
 .card-subhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
 .card-subhead h3{display:flex;align-items:center;gap:7px;margin:0;font-size:13.5px;font-weight:800;color:var(--text)}
 .card-subhead h3 .icon{width:16px;height:16px;color:var(--accent);flex-shrink:0}
+
+/* ================= کارت تأیید کننده: انتخاب روش (v16) ================= */
+.opt-list{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.opt-row{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  width:100%;
+  padding:13px 13px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:var(--bg-3);
+  color:var(--text);
+  font-family:inherit;
+  text-align:right;
+  cursor:pointer;
+  transition:border-color .15s,background .15s,transform .1s;
+}
+.opt-row:active{transform:scale(.985)}
+.opt-row:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--border));background:var(--bg-3-hover)}
+.opt-ico{
+  width:38px;height:38px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  background:color-mix(in srgb,var(--accent) 12%,transparent);
+  color:var(--accent);
+}
+.opt-ico .icon{width:19px;height:19px}
+.opt-text{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.opt-text b{font-size:13.5px;font-weight:700;line-height:1.4}
+.opt-sub{font-size:11px;color:var(--text-dim);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opt-chev{width:16px;height:16px;color:var(--text-faint);flex-shrink:0}
