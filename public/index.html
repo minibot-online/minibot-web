@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=19">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -460,10 +460,18 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         <div class="card-head">
           <div class="ico-badge" data-lucide="target"></div>
           <h2>فرستنده</h2>
-          <button class="btn btn-secondary btn-sm" id="confirmSelectAllGroups">انتخاب همه</button>
-          <button class="btn btn-secondary btn-sm" id="confirmClearGroups">لغو همه</button>
         </div>
-        <div class="group-list" id="confirmGroupList"></div>
+
+        <div class="opt-list">
+          <button type="button" class="opt-row" data-goto="sgroups">
+            <span class="opt-ico"><span class="icon" data-lucide="users-round"></span></span>
+            <span class="opt-text">
+              <b>گروه‌ها</b>
+              <span class="opt-sub" id="optSenderSub">گروه‌هایی که فیش‌ها از آن‌ها فرستاده می‌شوند</span>
+            </span>
+            <span class="icon opt-chev" data-lucide="chevron-left"></span>
+          </button>
+        </div>
       </div>
 
       <div class="card">
@@ -491,6 +499,21 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <button class="btn btn-secondary btn-sm" id="ownerAddBtn">افزودن</button>
         </div>
         <div class="hint-line">شماره تأیید کننده را با کد کشور وارد کن، مثل 937XXXXXXXXX</div>
+      </div>
+    </section>
+
+    <!-- ---------- SENDER GROUPS ---------- -->
+    <section class="panel" id="panel-sgroups">
+      <div class="section-title"><button class="back-btn" data-back="confirm"><span class="icon" data-lucide="arrow-right"></span>فرستنده</button><span>گروه‌ها</span></div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="ico-badge" data-lucide="users-round"></div>
+          <h2>گروه‌ها</h2>
+          <button class="btn btn-secondary btn-sm" id="confirmSelectAllGroups">انتخاب همه</button>
+          <button class="btn btn-secondary btn-sm" id="confirmClearGroups">لغو همه</button>
+        </div>
+        <div class="group-list" id="confirmGroupList"></div>
       </div>
     </section>
 
@@ -891,7 +914,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 <script src="pwa.js?v=1" defer></script>
 <script src="plan.js?v=2" defer></script>
-<script src="app.js?v=56"></script>
+<script src="app.js?v=57"></script>
 <script>
 /* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → صفحه‌ی جزئیات همان بخش */
 (function(){
@@ -1189,12 +1212,18 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
       var n=document.querySelectorAll('#verifierGroupList .group-item.selected').length;
       gSub.textContent = n ? (n + ' گروه انتخاب شده') : 'فیش‌ها به گروه(های) منتخب می‌روند';
     }
+    var sSub=document.getElementById('optSenderSub');
+    if(sSub){
+      var m=document.querySelectorAll('#confirmGroupList .group-item.selected').length;
+      sSub.textContent = m ? (m + ' گروه انتخاب شده') : 'گروه‌هایی که فیش‌ها از آن‌ها فرستاده می‌شوند';
+    }
   }
   function boot(){
-    var a=document.getElementById('ownerBox'), b=document.getElementById('verifierGroupList');
+    var a=document.getElementById('ownerBox'), b=document.getElementById('verifierGroupList'), c=document.getElementById('confirmGroupList');
     if(window.MutationObserver){
       if(a) new MutationObserver(upd).observe(a,{childList:true,subtree:true,characterData:true});
       if(b) new MutationObserver(upd).observe(b,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+      if(c) new MutationObserver(upd).observe(c,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
     }
     upd(); setInterval(upd, 1500);
   }
