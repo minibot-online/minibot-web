@@ -47,7 +47,7 @@
   }
   /* ردیف «نصب اپلیکیشن» در تنظیمات: تا وقتی نصب نشده و امکان نصب هست دیده می‌شود */
   function syncRow() {
-    var can = !isInstalled();
+    var can = !isInstalled() && (!!deferred || isiOS);
     if (hm) hm.hidden = !can;
     if (!row) return;
     row.hidden = !can;
@@ -110,6 +110,10 @@
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doInstall(); }
     });
     syncRow();
+    /* چند بازبینی کوتاه: بعضی مرورگرها رویداد نصب را با تأخیر می‌دهند */
+    setTimeout(syncRow, 1200);
+    setTimeout(syncRow, 3000);
+    setTimeout(syncRow, 6000);
     document.addEventListener("visibilitychange", function () { if (!document.hidden) syncRow(); });
   }
   /* ---------- اعلان نصب روی داشبورد: هر بار ورود، با دکمه بستن ---------- */
@@ -123,7 +127,7 @@
     var closedThisVisit = false, timer = null;
 
     function showTip() {
-      if (closedThisVisit || isInstalled()) { tip.hidden = true; return; }
+      if (closedThisVisit || isInstalled() || (!deferred && !isiOS)) { tip.hidden = true; return; }
       tip.hidden = false;
       if (window.lucide && lucide.createIcons) { try { lucide.createIcons(); } catch (e) {} }
     }
