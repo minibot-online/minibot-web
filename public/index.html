@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=23">
+<link rel="stylesheet" href="style.css?v=24">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -246,6 +246,18 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
       <div class="status-pill busy" id="statusBadge"><span class="dot"></span><span></span></div>
     </div>
   </header>
+
+  <!-- اعلان نصب روی داشبورد -->
+  <div id="installTip" class="install-tip" hidden>
+    <button type="button" class="install-tip-main" id="installTipMain">
+      <span class="icon it-ico" data-lucide="download"></span>
+      <span class="install-tip-text">
+        <b>نصب اپلیکیشن</b>
+        <small>مثل اپلیکیشن روی گوشی نصب شود</small>
+      </span>
+    </button>
+    <button type="button" class="install-tip-x" id="installTipX" aria-label="بستن"><span class="icon" data-lucide="x"></span></button>
+  </div>
 
   <div id="connectBanner" class="connect-banner" style="display:none">
     <button class="connect-banner-close" id="connectBannerClose" aria-label="بستن"><span class="icon" data-lucide="x"></span></button>
@@ -945,7 +957,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 
 
-<script src="pwa.js?v=4" defer></script>
+<script src="pwa.js?v=5" defer></script>
 <script src="plan.js?v=2" defer></script>
 <script src="app.js?v=58"></script>
 <script>

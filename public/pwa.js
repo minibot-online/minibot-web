@@ -83,6 +83,7 @@
   if (hm) {
     hm.addEventListener("click", function () { doInstall(); });
   }
+  window.__mbInstall = doInstall;
 
   if (row) {
     row.addEventListener("click", function () { doInstall(); });
@@ -92,6 +93,49 @@
     syncRow();
     document.addEventListener("visibilitychange", function () { if (!document.hidden) syncRow(); });
   }
+  /* ---------- اعلان نصب روی داشبورد: هر بار ورود، با دکمه بستن ---------- */
+  (function () {
+    var tip = document.getElementById("installTip");
+    var main = document.getElementById("installTipMain");
+    var xBtn2 = document.getElementById("installTipX");
+    var dash = document.getElementById("panel-dashboard");
+    if (!tip || !dash) return;
+
+    var closedThisVisit = false, timer = null;
+
+    function showTip() {
+      if (closedThisVisit || standalone()) { tip.hidden = true; return; }
+      tip.hidden = false;
+      if (window.lucide && lucide.createIcons) { try { lucide.createIcons(); } catch (e) {} }
+    }
+    function hideTip() { tip.hidden = true; }
+    function isDash() { return dash.classList.contains("active"); }
+
+    function schedule() {
+      clearTimeout(timer);
+      if (!isDash()) { hideTip(); return; }
+      timer = setTimeout(showTip, 700);
+    }
+
+    if (window.MutationObserver) {
+      new MutationObserver(schedule).observe(dash, { attributes: true, attributeFilter: ["class"] });
+    }
+    /* ورود دوباره به داشبورد → اعلان دوباره می‌آید */
+    document.querySelectorAll('.navbtn[data-tab="dashboard"]').forEach(function (b) {
+      b.addEventListener("click", function () { closedThisVisit = false; schedule(); });
+    });
+
+    if (xBtn2) xBtn2.addEventListener("click", function (e) {
+      e.stopPropagation();
+      closedThisVisit = true;
+      hideTip();
+    });
+    if (main) main.addEventListener("click", function () { doInstall(); });
+
+    window.addEventListener("appinstalled", function () { closedThisVisit = true; hideTip(); });
+    schedule();
+  })();
+
 
   if (isiOS) {
     okBtn.textContent = "چطور؟";
