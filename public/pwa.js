@@ -18,13 +18,24 @@
   function standalone() {
     return (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
   }
+  /* درون اپ اندروید (WebView) هم یعنی نصب‌شده است */
+  function inWrapper() {
+    var ua = navigator.userAgent || "";
+    return /;\s*wv\b/.test(ua) || /MiniBot/i.test(ua);
+  }
+  function installedFlag() {
+    try { return localStorage.getItem("mb_pwa_installed") === "1"; } catch (e) { return false; }
+  }
+  function isInstalled() {
+    return standalone() || inWrapper() || installedFlag();
+  }
   function dismissed() {
     var t = 0;
     try { t = +(localStorage.getItem(KEY) || 0); } catch (e) { t = 0; }
     return t > 0 && Date.now() - t < RESHOW;
   }
   function show() {
-    if (shown || standalone() || dismissed()) return;
+    if (shown || isInstalled() || dismissed()) return;
     shown = true;
     box.hidden = false;
     if (window.lucide && lucide.createIcons) { try { lucide.createIcons(); } catch (e) {} }
@@ -36,7 +47,7 @@
   }
   /* ردیف «نصب اپلیکیشن» در تنظیمات: تا وقتی نصب نشده و امکان نصب هست دیده می‌شود */
   function syncRow() {
-    var can = !standalone();
+    var can = !isInstalled();
     if (hm) hm.hidden = !can;
     if (!row) return;
     row.hidden = !can;
@@ -75,7 +86,15 @@
     show();
     syncRow();
   });
-  window.addEventListener("appinstalled", function () { hide(true); deferred = null; syncRow(); if (hm) hm.hidden = true; });
+  window.addEventListener("appinstalled", function () {
+    try { localStorage.setItem("mb_pwa_installed", "1"); } catch (e) {}
+    hide(true);
+    deferred = null;
+    syncRow();
+    if (hm) hm.hidden = true;
+    var tip0 = document.getElementById("installTip");
+    if (tip0) tip0.hidden = true;
+  });
 
   okBtn.addEventListener("click", function () { doInstall(); });
   xBtn.addEventListener("click", function () { hide(true); });
@@ -104,7 +123,7 @@
     var closedThisVisit = false, timer = null;
 
     function showTip() {
-      if (closedThisVisit || standalone()) { tip.hidden = true; return; }
+      if (closedThisVisit || isInstalled()) { tip.hidden = true; return; }
       tip.hidden = false;
       if (window.lucide && lucide.createIcons) { try { lucide.createIcons(); } catch (e) {} }
     }
@@ -139,7 +158,7 @@
 
   if (isiOS) {
     okBtn.textContent = "چطور؟";
-    if (!standalone()) setTimeout(show, 4000);
+    if (!isInstalled()) setTimeout(show, 4000);
     syncRow();
   }
 
