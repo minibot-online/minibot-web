@@ -711,3 +711,8 @@ svg.lucide{stroke-width:1.7}
 .opt-text b{font-size:13.5px;font-weight:700;line-height:1.4}
 .opt-sub{font-size:11px;color:var(--text-dim);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .opt-chev{width:16px;height:16px;color:var(--text-faint);flex-shrink:0}
+
+/* ردیف نصب اپلیکیشن در تنظیمات (v21) */
+.ws-row-action{cursor:pointer}
+.ws-row-action:active{background:var(--bg-3)}
+.ws-row-action:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}

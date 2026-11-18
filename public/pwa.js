@@ -6,6 +6,8 @@
   var sub = document.getElementById("pwaSub");
   var okBtn = document.getElementById("pwaInstallBtn");
   var xBtn = document.getElementById("pwaCloseBtn");
+  var row = document.getElementById("wsInstallRow");
+  var rowSub = document.getElementById("wsInstallSub");
   if (!box || !sub || !okBtn || !xBtn) return;
 
   var deferred = null, shown = false;
@@ -31,6 +33,29 @@
     box.hidden = true;
     if (remember) { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
   }
+  /* ردیف «نصب اپلیکیشن» در تنظیمات: تا وقتی نصب نشده و امکان نصب هست دیده می‌شود */
+  function syncRow() {
+    if (!row) return;
+    var can = !standalone() && (!!deferred || isiOS);
+    row.hidden = !can;
+    if (can && rowSub) {
+      rowSub.textContent = isiOS
+        ? "در سافاری: دکمه اشتراک‌گذاری ← افزودن به صفحه اصلی"
+        : "مثل اپلیکیشن روی گوشی نصب شود";
+    }
+  }
+  async function doInstall() {
+    if (deferred) {
+      try { deferred.prompt(); await deferred.userChoice; } catch (e) {}
+      deferred = null;
+      hide(true);
+      syncRow();
+      return true;
+    }
+    iosHint();
+    return false;
+  }
+
   function iosHint() {
     sub.textContent = "در سافاری دکمه «اشتراک‌گذاری» را بزن و «افزودن به صفحه اصلی» را انتخاب کن";
     okBtn.hidden = true;
@@ -40,23 +65,26 @@
     e.preventDefault();
     deferred = e;
     show();
+    syncRow();
   });
-  window.addEventListener("appinstalled", function () { hide(true); });
+  window.addEventListener("appinstalled", function () { hide(true); deferred = null; syncRow(); });
 
-  okBtn.addEventListener("click", async function () {
-    if (deferred) {
-      try { deferred.prompt(); await deferred.userChoice; } catch (e) {}
-      deferred = null;
-      hide(true);
-      return;
-    }
-    iosHint();
-  });
+  okBtn.addEventListener("click", function () { doInstall(); });
   xBtn.addEventListener("click", function () { hide(true); });
+
+  if (row) {
+    row.addEventListener("click", function () { doInstall(); });
+    row.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doInstall(); }
+    });
+    syncRow();
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) syncRow(); });
+  }
 
   if (isiOS) {
     okBtn.textContent = "چطور؟";
     if (!standalone()) setTimeout(show, 4000);
+    syncRow();
   }
 
   if ("serviceWorker" in navigator) {
