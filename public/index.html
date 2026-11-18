@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=15">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -434,18 +434,18 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <div class="ico-badge" data-lucide="credit-card"></div>
           <h2>تأیید کننده</h2>
         </div>
+
         <div id="ownerBox"></div>
         <div class="owner-add">
           <input id="ownerAddNumber" type="tel" placeholder="937XXXXXXXXX">
           <button class="btn btn-secondary btn-sm" id="ownerAddBtn">افزودن</button>
         </div>
         <div class="hint-line">شماره تأیید کننده را با کد کشور وارد کن، مثل 937XXXXXXXXX</div>
-      </div>
 
-      <div class="card">
-        <div class="card-head">
-          <div class="ico-badge" data-lucide="users-round"></div>
-          <h2>گروه‌های تأیید کننده</h2>
+        <div class="card-sep"></div>
+
+        <div class="card-subhead">
+          <h3><span class="icon" data-lucide="users-round"></span>گروه‌های تأیید کننده</h3>
           <button class="btn btn-secondary btn-sm" id="verifierClearBtn">لغو همه</button>
         </div>
         <div class="hint-line">به‌جای یک شماره، فیش‌ها به گروه(های) منتخب می‌روند — ری‌اکشن هر کس در آن گروه روی پیام اصلی اعمال می‌شود</div>

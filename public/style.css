@@ -638,3 +638,9 @@ svg.lucide{stroke-width:1.7}
 @media (prefers-reduced-motion:reduce){
   #appLoader .sk{animation:none}
 }
+
+/* کارت یکپارچه‌ی تأیید کننده (v15) */
+.card-sep{height:1px;background:var(--border-soft);margin:14px 0}
+.card-subhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.card-subhead h3{display:flex;align-items:center;gap:7px;margin:0;font-size:13.5px;font-weight:800;color:var(--text)}
+.card-subhead h3 .icon{width:16px;height:16px;color:var(--accent);flex-shrink:0}
