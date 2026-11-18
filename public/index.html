@@ -419,16 +419,18 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
         <div class="card-head">
           <div class="ico-badge" data-lucide="users"></div>
           <h2>گروه‌ ها</h2>
-          <button class="gh-btn" id="refreshGroups" title="بروزرسانی" aria-label="بروزرسانی"><span class="icon" data-lucide="refresh-cw"></span></button>
-          <button class="gh-btn gh-all" id="selectAllGroups" title="انتخاب همه گروه‌ها">انتخاب همه</button>
         </div>
-        <div id="selectedGroupBox"></div>
-        <label class="grp-search" id="groupSearchWrap">
-          <span class="icon" data-lucide="search"></span>
-          <input id="groupSearch" type="search" placeholder="جستجوی گروه…" autocomplete="off" spellcheck="false">
-        </label>
-        <div class="group-list" id="groupList"></div>
-        <div class="hint-line">گروه های مورد نظر خود را انتخاب کنید ✔️ </div>
+
+        <div class="opt-list">
+          <button type="button" class="opt-row" data-goto="dupgroups">
+            <span class="opt-ico"><span class="icon" data-lucide="users-round"></span></span>
+            <span class="opt-text">
+              <b>گروه‌ها</b>
+              <span class="opt-sub" id="optDupSub">گروه‌هایی که فیش‌هایشان بررسی می‌شود</span>
+            </span>
+            <span class="icon opt-chev" data-lucide="chevron-left"></span>
+          </button>
+        </div>
       </div>
 
       <div class="card">
@@ -444,6 +446,29 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
           <input type="file" id="manualReceiptFile" accept="image/*,application/pdf" style="display:none">
         </div>
         <div class="receipt-list" id="receiptsList"></div>
+      </div>
+
+    </section>
+
+    <!-- ---------- DUP GROUPS (گروه‌های تشخیص فیش تکراری) ---------- -->
+    <section class="panel" id="panel-dupgroups">
+
+      <div class="section-title"><button class="back-btn" data-back="dup"><span class="icon" data-lucide="arrow-right"></span>تشخیص فیش تکراری</button><span>گروه‌ها</span></div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="ico-badge" data-lucide="users"></div>
+          <h2>گروه‌ ها</h2>
+          <button class="gh-btn" id="refreshGroups" title="بروزرسانی" aria-label="بروزرسانی"><span class="icon" data-lucide="refresh-cw"></span></button>
+          <button class="gh-btn gh-all" id="selectAllGroups" title="انتخاب همه گروه‌ها">انتخاب همه</button>
+        </div>
+        <div id="selectedGroupBox"></div>
+        <label class="grp-search" id="groupSearchWrap">
+          <span class="icon" data-lucide="search"></span>
+          <input id="groupSearch" type="search" placeholder="جستجوی گروه…" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="group-list" id="dupGroupList"></div>
+        <div class="hint-line">گروه های مورد نظر خود را انتخاب کنید ✔️ </div>
       </div>
 
     </section>
@@ -959,7 +984,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 <script src="pwa.js?v=8" defer></script>
 <script src="plan.js?v=2" defer></script>
-<script src="app.js?v=58"></script>
+<script src="app.js?v=60"></script>
 <script>
 /* میان‌بر: کلیک روی ردیف «تشخیص فیش تکراری» در داشبورد → صفحه‌ی جزئیات همان بخش */
 (function(){
