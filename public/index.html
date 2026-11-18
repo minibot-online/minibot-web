@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -179,25 +179,48 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 <!-- ============ APP SHELL ============ -->
 <div id="screenApp">
-<!-- لودر اپ: تا رسیدن اولین وضعیت واقعی از سرور، به‌جای محتوای پیش‌فرض انمیشن لود نشان داده می‌شود -->
+<!-- لودر اپ: اسکلتون هم‌شکل داشبورد تا رسیدن اولین وضعیت از سرور -->
 <div id="appLoader" role="status" aria-live="polite" aria-label="در حال دریافت اطلاعات">
     <div class="sk-wrap" aria-hidden="true">
-      <div class="sk-top">
-        <span class="sk sk-dot"></span>
-        <span class="sk sk-title"></span>
+      <div class="sk-head">
+        <span class="sk sk-hdr-title"></span>
+        <span class="sk sk-hdr-dot"></span>
       </div>
       <div class="sk-body">
-        <div class="sk-card sk-plan">
-          <span class="sk sk-pill"></span>
-          <div class="sk-lines"><span class="sk sk-l1"></span><span class="sk sk-l2"></span></div>
+        <div class="sk-bank">
+          <div class="sk-bank-top">
+            <span class="sk skb skb-brand"></span>
+            <span class="sk skb skb-chip"></span>
+          </div>
+          <div class="sk-bank-main">
+            <span class="sk skb skb-plan"></span>
+            <span class="sk skb skb-status"></span>
+          </div>
+          <div class="sk-bank-num">
+            <span class="sk skb"></span>
+            <span class="sk skb"></span>
+            <span class="sk skb"></span>
+          </div>
+          <div class="sk-bank-stats">
+            <div class="sk-bstat"><span class="sk skb skb-s1"></span><span class="sk skb skb-s2"></span></div>
+            <div class="sk-bstat"><span class="sk skb skb-s1"></span><span class="sk skb skb-s2"></span></div>
+          </div>
         </div>
-        <div class="sk-two">
-          <div class="sk-card sk-tile"><span class="sk sk-img"></span><span class="sk sk-l1"></span><span class="sk sk-l3"></span></div>
-          <div class="sk-card sk-tile"><span class="sk sk-img"></span><span class="sk sk-l1"></span><span class="sk sk-l3"></span></div>
+
+        <div class="sk-card">
+          <div class="sk-card-head">
+            <span class="sk sk-badge"></span>
+            <span class="sk sk-title2"></span>
+          </div>
+          <div class="sk-trow">
+            <div class="sk-lines"><span class="sk sk-l1"></span><span class="sk sk-l4"></span></div>
+            <span class="sk sk-switch"></span>
+          </div>
+          <div class="sk-trow">
+            <div class="sk-lines"><span class="sk sk-l1"></span><span class="sk sk-l3"></span></div>
+            <span class="sk sk-switch"></span>
+          </div>
         </div>
-        <div class="sk-card sk-row"><span class="sk sk-av"></span><div class="sk-lines"><span class="sk sk-l1"></span><span class="sk sk-l4"></span></div><span class="sk sk-tag"></span></div>
-        <div class="sk-card sk-row"><span class="sk sk-av"></span><div class="sk-lines"><span class="sk sk-l1"></span><span class="sk sk-l4"></span></div><span class="sk sk-tag"></span></div>
-        <div class="sk-card sk-row"><span class="sk sk-av"></span><div class="sk-lines"><span class="sk sk-l1"></span><span class="sk sk-l4"></span></div><span class="sk sk-tag"></span></div>
       </div>
       <div class="sk-nav"><span class="sk"></span><span class="sk"></span><span class="sk"></span><span class="sk"></span></div>
     </div>
