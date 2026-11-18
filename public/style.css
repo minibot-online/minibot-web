@@ -720,7 +720,7 @@ svg.lucide{stroke-width:1.7}
 /* دکمه‌ی نصب در هدر، کنار سه‌نقطه (v22) */
 #hdrInstallBtn{
   color:var(--accent)!important;
-  background:var(--accent-glow)!important;
+  background:transparent!important;
 }
 #hdrInstallBtn:active{transform:scale(.94)}
 #hdrInstallBtn .icon{width:21px!important;height:21px!important}
