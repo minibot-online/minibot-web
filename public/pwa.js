@@ -6,8 +6,6 @@
   var sub = document.getElementById("pwaSub");
   var okBtn = document.getElementById("pwaInstallBtn");
   var xBtn = document.getElementById("pwaCloseBtn");
-  var row = document.getElementById("wsInstallRow");
-  var rowSub = document.getElementById("wsInstallSub");
   var hm = document.getElementById("hdrInstallBtn");
   if (!box || !sub || !okBtn || !xBtn) return;
 
@@ -45,17 +43,10 @@
     box.hidden = true;
     if (remember) { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
   }
-  /* ردیف «نصب اپلیکیشن» در تنظیمات: تا وقتی نصب نشده و امکان نصب هست دیده می‌شود */
+  /* آیکون نصب در هدر و گزینه‌ی منو: تا وقتی نصب نشده دیده می‌شوند (ردیف تب «شما» حذف شد) */
   function syncRow() {
     var can = !isInstalled();
     if (hm) hm.hidden = !can;
-    if (!row) return;
-    row.hidden = !can;
-    if (can && rowSub) {
-      rowSub.textContent = isiOS
-        ? "در سافاری: دکمه اشتراک‌گذاری ← افزودن به صفحه اصلی"
-        : "مثل اپلیکیشن روی گوشی نصب شود";
-    }
   }
   function tell(msg) {
     try { if (typeof toast === "function") { toast(msg); return; } } catch (e) {}
@@ -104,14 +95,8 @@
   }
   window.__mbInstall = doInstall;
 
-  if (row) {
-    row.addEventListener("click", function () { doInstall(); });
-    row.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doInstall(); }
-    });
-    syncRow();
-    document.addEventListener("visibilitychange", function () { if (!document.hidden) syncRow(); });
-  }
+  syncRow();
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) syncRow(); });
   /* ---------- اعلان نصب روی داشبورد: هر بار ورود، با دکمه بستن ---------- */
   (function () {
     var tip = document.getElementById("installTip");
