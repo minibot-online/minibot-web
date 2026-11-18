@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=21">
+<link rel="stylesheet" href="style.css?v=22">
 <style>
 /* ---------- شیت ساخت حساب (inline: مستقل از کش CSS) ---------- */
 .ss-wrap{position:fixed;inset:0;z-index:600;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,0);visibility:hidden;opacity:0;transition:opacity .22s,visibility .22s}
@@ -229,12 +229,12 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
   <header class="app-header tg-app-header">
     <div class="tg-app-title" id="tgAppTitle">Mini Bot</div>
     <div class="tg-hdr-actions">
+      <button type="button" id="hdrInstallBtn" aria-label="نصب اپلیکیشن" title="نصب اپلیکیشن" hidden><span class="icon" data-lucide="download"></span></button>
       <button type="button" id="hdrMenuBtn" aria-label="منو"><span class="icon" data-lucide="ellipsis-vertical"></span></button>
       <div class="tg-hdr-menu" id="hdrMenu">
         <button type="button" id="hmTheme"><span class="icon hm-ico-moon" data-lucide="moon"></span><span class="icon hm-ico-sun" data-lucide="sun"></span><span id="hmThemeLbl">حالت شب</span></button>
         <a href="https://t.me/minibot_af" target="_blank" rel="noopener"><span class="icon" data-lucide="send"></span>پشتیبانی</a>
         <a href="https://wa.me/93745872028" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.9-1.3A9.5 9.5 0 1 0 12 2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.7 7.8c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.6.7c.7 1.3 1.6 2.2 2.9 2.9l.7-.6c.2-.2.4-.2.7-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.3-1 .5-1.6.4-2-.3-3.8-1.6-5.2-3.1-1.5-1.4-2.8-3.2-3.1-5.2-.1-.6.1-1.2.4-1.6Z" fill="currentColor"/></svg>پشتیبانی</a>
-        <button type="button" id="hmInstall"><span class="icon" data-lucide="download"></span>نصب اپلیکیشن</button>
         <button type="button" data-hm="about"><span class="icon" data-lucide="info"></span>درباره ما</button>
         <button type="button" id="hmLogout" class="hm-logout"><span class="icon" data-lucide="log-out"></span>خروج از حساب کاربری</button>
       </div>
@@ -945,7 +945,7 @@ html[data-mbnc="1"]{--mb-name-color:#e05b7b}html[data-mbnc="2"]{--mb-name-color:
 
 
 
-<script src="pwa.js?v=3" defer></script>
+<script src="pwa.js?v=4" defer></script>
 <script src="plan.js?v=2" defer></script>
 <script src="app.js?v=58"></script>
 <script>

@@ -8,7 +8,7 @@
   var xBtn = document.getElementById("pwaCloseBtn");
   var row = document.getElementById("wsInstallRow");
   var rowSub = document.getElementById("wsInstallSub");
-  var hm = document.getElementById("hmInstall");
+  var hm = document.getElementById("hdrInstallBtn");
   if (!box || !sub || !okBtn || !xBtn) return;
 
   var deferred = null, shown = false;
@@ -81,11 +81,7 @@
   xBtn.addEventListener("click", function () { hide(true); });
 
   if (hm) {
-    hm.addEventListener("click", function () {
-      var m = document.getElementById("hdrMenu");
-      if (m) m.classList.remove("open");
-      doInstall();
-    });
+    hm.addEventListener("click", function () { doInstall(); });
   }
 
   if (row) {
