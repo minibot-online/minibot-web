@@ -8,6 +8,7 @@
   var xBtn = document.getElementById("pwaCloseBtn");
   var row = document.getElementById("wsInstallRow");
   var rowSub = document.getElementById("wsInstallSub");
+  var hm = document.getElementById("hmInstall");
   if (!box || !sub || !okBtn || !xBtn) return;
 
   var deferred = null, shown = false;
@@ -35,14 +36,20 @@
   }
   /* ردیف «نصب اپلیکیشن» در تنظیمات: تا وقتی نصب نشده و امکان نصب هست دیده می‌شود */
   function syncRow() {
+    var can = !standalone();
+    if (hm) hm.hidden = !can;
     if (!row) return;
-    var can = !standalone() && (!!deferred || isiOS);
     row.hidden = !can;
     if (can && rowSub) {
       rowSub.textContent = isiOS
         ? "در سافاری: دکمه اشتراک‌گذاری ← افزودن به صفحه اصلی"
         : "مثل اپلیکیشن روی گوشی نصب شود";
     }
+  }
+  function tell(msg) {
+    try { if (typeof toast === "function") { toast(msg); return; } } catch (e) {}
+    try { if (window.toast && typeof window.toast === "function") { window.toast(msg); return; } } catch (e) {}
+    try { alert(msg); } catch (e) {}
   }
   async function doInstall() {
     if (deferred) {
@@ -52,7 +59,8 @@
       syncRow();
       return true;
     }
-    iosHint();
+    if (isiOS) { iosHint(); tell("در سافاری: دکمه اشتراک‌گذاری ← افزودن به صفحه اصلی"); return false; }
+    tell("برای نصب، از منوی مرورگر «افزودن به صفحه اصلی» را بزن");
     return false;
   }
 
@@ -67,10 +75,18 @@
     show();
     syncRow();
   });
-  window.addEventListener("appinstalled", function () { hide(true); deferred = null; syncRow(); });
+  window.addEventListener("appinstalled", function () { hide(true); deferred = null; syncRow(); if (hm) hm.hidden = true; });
 
   okBtn.addEventListener("click", function () { doInstall(); });
   xBtn.addEventListener("click", function () { hide(true); });
+
+  if (hm) {
+    hm.addEventListener("click", function () {
+      var m = document.getElementById("hdrMenu");
+      if (m) m.classList.remove("open");
+      doInstall();
+    });
+  }
 
   if (row) {
     row.addEventListener("click", function () { doInstall(); });
