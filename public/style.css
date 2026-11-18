@@ -782,3 +782,12 @@ svg.lucide{stroke-width:1.7}
 .install-tip-x:active{transform:scale(.92)}
 .install-tip-x .icon{width:14px;height:14px}
 @media (max-width:360px){ .install-tip-text small{white-space:normal} }
+
+/* چند شماره تأیید کننده — فهرست با حذف هر شماره */
+.vphone-item{position:relative;padding-inline-end:46px}
+.vphone-item .details{flex:1;min-width:0}
+.vphone-item .name{direction:ltr;text-align:right;font-weight:700}
+.vphone-item .jid{color:var(--text-faint)}
+.vphone-del{position:absolute;top:50%;inset-inline-end:10px;transform:translateY(-50%);width:32px;height:32px;border-radius:10px;border:1px solid var(--border-soft);background:var(--bg-3);color:var(--danger);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.vphone-del:active{background:var(--danger-soft)}
+.vphone-del svg{width:16px;height:16px}
