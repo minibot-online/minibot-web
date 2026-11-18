@@ -742,11 +742,12 @@ svg.lucide{stroke-width:1.7}
   box-shadow:0 16px 34px -22px rgba(14,33,62,.6);
   animation:tipIn .22s cubic-bezier(.25,.8,.4,1);
 }
+.install-tip[hidden]{display:none!important}
 .install-tip::before{
   content:"";
   position:absolute;
   top:-6px;
-  right:26px;
+  right:54px;
   width:11px;
   height:11px;
   background:var(--bg-2);
