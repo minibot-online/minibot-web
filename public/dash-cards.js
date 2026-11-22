@@ -20,6 +20,24 @@
       var subSrc = $(m.subSrc), sub = $(m.sub);
       if (subSrc && sub && subSrc.textContent.trim()) sub.textContent = subSrc.textContent.trim();
     });
+    syncClones();
+  }
+
+  /* کپی‌های کاروسل را با اسلاید واقعی هم‌وضعیت نگه می‌دارد */
+  function syncClones() {
+    var car = $("dashCarousel");
+    if (!car || !car._dcReal) return;
+    var clones = car.querySelectorAll('.dc-slide[data-clone="1"]');
+    var n = car._dcReal.length;
+    for (var i = 0; i < clones.length; i++) {
+      var src = car._dcReal[i % n];
+      var a = src.querySelectorAll("*"), b = clones[i].querySelectorAll("*");
+      if (a.length !== b.length) continue;
+      for (var k = 0; k < a.length; k++) {
+        if (b[k].className !== a[k].className) b[k].className = a[k].className;
+        if (a[k].children.length === 0 && b[k].textContent !== a[k].textContent) b[k].textContent = a[k].textContent;
+      }
+    }
   }
 
   function bind() {
@@ -41,31 +59,108 @@
       });
     });
 
-    /* نقطه‌ها: بر اساس اسلایدی که بیشترین بخش را دارد */
+    /* ---------- چرخش بی‌پایان: کپی از ابتدا و انتهای لیست، پرش بی‌صدا به اسلاید واقعی ---------- */
     var dots = $("dashDots") ? $("dashDots").children : [];
-    var slides = car.querySelectorAll(".dc-slide");
-    function updateDots() {
-      var box = car.getBoundingClientRect(), best = 0, bestV = -1;
-      for (var i = 0; i < slides.length; i++) {
-        var r = slides[i].getBoundingClientRect();
-        var v = Math.max(0, Math.min(r.right, box.right) - Math.max(r.left, box.left));
-        if (v > bestV) { bestV = v; best = i; }
+    var real = Array.prototype.slice.call(car.querySelectorAll(".dc-slide"));
+    var N = real.length;
+    var first = real[0], last = real[N - 1];
+    var cloneBefore = [], cloneAfter = [];
+    if (N > 1) {
+      for (var k = 0; k < N; k++) {
+        var cb = real[k].cloneNode(true); cb.setAttribute("data-clone", "1"); cb.setAttribute("aria-hidden", "true");
+        var ca = real[k].cloneNode(true); ca.setAttribute("data-clone", "1"); ca.setAttribute("aria-hidden", "true");
+        [cb, ca].forEach(function (c) {
+          /* کپی‌ها فقط نمایشی‌اند: بدون id و بدون فوکوس؛ کلیکشان به کارت اصلی می‌رود */
+          Array.prototype.forEach.call(c.querySelectorAll("[id]"), function (n) { n.removeAttribute("id"); });
+          Array.prototype.forEach.call(c.querySelectorAll("[tabindex]"), function (n) { n.setAttribute("tabindex", "-1"); });
+        });
+        cloneBefore.push(cb); cloneAfter.push(ca);
       }
-      for (var j = 0; j < dots.length; j++) dots[j].classList.toggle("on", j === best);
+      cloneBefore.forEach(function (c) { car.insertBefore(c, first); });
+      cloneAfter.forEach(function (c) { car.appendChild(c); });
+    }
+    var all = Array.prototype.slice.call(car.querySelectorAll(".dc-slide"));
+
+    function slideCenter(el) {
+      /* مرکز اسلاید نسبت به scrollLeft کاروسل (RTL-safe با getBoundingClientRect) */
+      var b = car.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return (r.left + r.width / 2) - (b.left + b.width / 2);
+    }
+    function nearestIndex() {
+      var best = 0, bestD = Infinity;
+      for (var i = 0; i < all.length; i++) {
+        var d = Math.abs(slideCenter(all[i]));
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      return best;
+    }
+    function jumpTo(idx) {
+      var prev = car.style.scrollSnapType;
+      car.style.scrollSnapType = "none";
+      car.scrollLeft += slideCenter(all[idx]);
+      /* دو فریم صبر می‌کنیم تا مرورگر جابجایی را اعمال کند، بعد snap برگردد */
+      requestAnimationFrame(function () { requestAnimationFrame(function () { car.style.scrollSnapType = prev || ""; }); });
+    }
+    function realIndex(i) { return N > 1 ? ((i - N) % N + N) % N : 0; }
+
+    function updateActive() {
+      var idx = nearestIndex(), ri = realIndex(idx);
+      for (var i = 0; i < all.length; i++) all[i].classList.toggle("is-active", i === idx);
+      for (var j = 0; j < dots.length; j++) dots[j].classList.toggle("on", j === ri);
+      return idx;
+    }
+
+    /* وقتی کاربر به یک کپی رسید و اسکرول متوقف شد → بی‌صدا به اسلاید واقعی هم‌ارز برو */
+    var settle = 0;
+    function onSettled() {
+      if (N < 2) return;
+      var idx = nearestIndex();
+      if (idx < N || idx >= 2 * N) { jumpTo(N + realIndex(idx)); setTimeout(updateActive, 40); }
     }
     var raf = 0;
     car.addEventListener("scroll", function () {
-      if (raf) return;
-      raf = requestAnimationFrame(function () { raf = 0; updateDots(); });
+      if (!raf) raf = requestAnimationFrame(function () { raf = 0; updateActive(); });
+      clearTimeout(settle);
+      settle = setTimeout(onSettled, 110);
     }, { passive: true });
+    if ("onscrollend" in window) car.addEventListener("scrollend", function () { clearTimeout(settle); onSettled(); });
+
     for (var d = 0; d < dots.length; d++) {
       (function (i) {
         dots[i].addEventListener("click", function () {
-          if (slides[i]) slides[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+          var cur = nearestIndex(), curReal = realIndex(cur);
+          var target = all[cur + (i - curReal)];
+          if (target) target.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         });
       })(d);
     }
-    updateDots();
+
+    /* شروع از اولین اسلاید واقعی */
+    function start() { if (N > 1) jumpTo(N); setTimeout(updateActive, 30); }
+    start();
+    window.addEventListener("load", start);
+    window.addEventListener("resize", function () { if (N > 1) { var r = realIndex(nearestIndex()); jumpTo(N + r); setTimeout(updateActive, 30); } });
+    car._dcReal = real;
+
+    /* ---------- کلیک روی کارت‌های کناری/کپی‌ها ---------- */
+    car.addEventListener("click", function (e) {
+      var sl = e.target.closest && e.target.closest(".dc-slide");
+      if (!sl) return;
+      var idx = all.indexOf(sl);
+      if (idx < 0) return;
+      /* اگر اسلاید وسط نیست، اول بیاورش وسط و کلیک را نادیده بگیر (کارت کناری = فقط نمایش) */
+      if (!sl.classList.contains("is-active")) {
+        e.stopPropagation(); e.preventDefault();
+        sl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        return;
+      }
+      /* کپی فعال: کلیک را به کارت واقعی هم‌ارز بده */
+      if (sl.getAttribute("data-clone")) {
+        var tgt = real[realIndex(idx)];
+        var el = tgt && (e.target.closest(".toggle-switch") ? tgt.querySelector(".toggle-switch") : tgt.firstElementChild);
+        if (el && el !== e.target) { e.stopPropagation(); e.preventDefault(); el.click(); }
+      }
+    }, true);
 
     /* هر تغییر در سوییچ‌ها/متن وضعیت اصلی → کارت‌ها هم‌گام شوند */
     if (window.MutationObserver) {
