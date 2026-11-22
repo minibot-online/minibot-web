@@ -86,13 +86,11 @@
 html[data-theme=dark] .dc-slide>.feat-bank-card .fbc-foot{border-top-color:rgba(255,255,255,.1)}
 @media (hover:hover) and (pointer:fine){.dc-slide>.feat-bank-card{min-height:226px}}
 
-/* ---------- کاروسل بی‌پایان با دیده شدن کارت‌های کناری (v=40) ---------- */
+/* ---------- کاروسل بی‌پایان، کارت وسط هم‌اندازه‌ی قبل و کمی از کارت‌های کنار (v=41) ---------- */
 .dash-carousel-wrap{max-width:none;margin-inline:-13px;width:calc(100% + 26px)}
-.dash-carousel{gap:10px;padding:2px 0 8px;scroll-snap-type:x mandatory;scroll-behavior:auto}
-.dash-carousel .dc-slide{flex:0 0 80%;scroll-snap-align:center;scroll-snap-stop:always;transition:transform .35s cubic-bezier(.22,.8,.3,1),opacity .35s;transform:scale(.94);opacity:.72}
-.dash-carousel .dc-slide.is-active{transform:none;opacity:1}
-.dash-carousel::before,.dash-carousel::after{content:"";flex:0 0 calc((100% - 80%) / 2 - 10px)}
+.dash-carousel{gap:8px;padding:2px 0 8px;scroll-snap-type:x mandatory;scroll-behavior:auto}
+.dash-carousel .dc-slide{flex:0 0 90%;scroll-snap-align:center;scroll-snap-stop:always}
+.dash-carousel::before,.dash-carousel::after{content:"";flex:0 0 calc((100% - 90%) / 2 - 8px)}
 .dc-slide>.plan-bank-card,.dc-slide>.feat-bank-card{max-width:100%}
 .dc-dots{margin:2px 0 12px}
-@media (min-width:700px){.dash-carousel-wrap{margin-inline:auto;width:100%;max-width:860px}.dash-carousel .dc-slide{flex-basis:60%}.dash-carousel::before,.dash-carousel::after{flex-basis:calc((100% - 60%) / 2 - 10px)}}
-@media (prefers-reduced-motion:reduce){.dash-carousel .dc-slide{transition:none}}
+@media (min-width:700px){.dash-carousel-wrap{margin-inline:auto;width:100%;max-width:860px}.dash-carousel .dc-slide{flex-basis:100%}.dash-carousel::before,.dash-carousel::after{display:none}}
