@@ -86,10 +86,11 @@
 html[data-theme=dark] .dc-slide>.feat-bank-card .fbc-foot{border-top-color:rgba(255,255,255,.1)}
 @media (hover:hover) and (pointer:fine){.dc-slide>.feat-bank-card{min-height:226px}}
 
-/* ---------- کاروسل بی‌پایان، هم‌تراز با بقیه‌ی صفحه و بدون نقطه‌ها (v=42) ---------- */
-.dash-carousel{gap:8px;padding:2px 0 4px;scroll-snap-type:x mandatory;scroll-behavior:auto}
+/* ---------- کاروسل بی‌پایان، کارت وسط هم‌اندازه‌ی قبل و کمی از کارت‌های کنار (v=41) ---------- */
+.dash-carousel-wrap{max-width:none;margin-inline:-13px;width:calc(100% + 26px)}
+.dash-carousel{gap:8px;padding:2px 0 8px;scroll-snap-type:x mandatory;scroll-behavior:auto}
 .dash-carousel .dc-slide{flex:0 0 90%;scroll-snap-align:center;scroll-snap-stop:always}
-.dash-carousel::before,.dash-carousel::after{content:"";flex:0 0 calc(5% - 8px)}
+.dash-carousel::before,.dash-carousel::after{content:"";flex:0 0 calc((100% - 90%) / 2 - 8px)}
 .dc-slide>.plan-bank-card,.dc-slide>.feat-bank-card{max-width:100%}
-.dc-dots{display:none}
-@media (min-width:700px){.dash-carousel .dc-slide{flex-basis:100%}.dash-carousel::before,.dash-carousel::after{display:none}}
+.dc-dots{margin:2px 0 12px}
+@media (min-width:700px){.dash-carousel-wrap{margin-inline:auto;width:100%;max-width:860px}.dash-carousel .dc-slide{flex-basis:100%}.dash-carousel::before,.dash-carousel::after{display:none}}
