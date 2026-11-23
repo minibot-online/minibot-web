@@ -103,17 +103,3 @@ html[data-theme=dark] .dc-slide>.feat-bank-card .fbc-foot{border-top-color:rgba(
 :root[data-theme=dark] .plan-bank-card,:root[data-theme=dark] .feat-bank-card{
   box-shadow:0 4px 12px -9px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.04) inset;
 }
-
-/* ---------- نرم‌کردن هاله‌ی آبی پس‌زمینه تا لبه‌ی کارت خط نسازد (v=47) ---------- */
-body{
-  background:
-    radial-gradient(850px 420px at 96% -10%,rgba(24,88,185,.07),transparent 62%),
-    radial-gradient(700px 400px at -12% 18%,rgba(56,116,205,.07),transparent 58%),
-    var(--bg);
-}
-:root[data-theme=dark] body{
-  background:
-    radial-gradient(850px 420px at 96% -10%,rgba(24,88,185,.16),transparent 62%),
-    radial-gradient(700px 400px at -12% 18%,rgba(56,116,205,.14),transparent 58%),
-    var(--bg);
-}
