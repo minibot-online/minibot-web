@@ -94,3 +94,31 @@ html[data-theme=dark] .dc-slide>.feat-bank-card .fbc-foot{border-top-color:rgba(
 .dc-slide>.plan-bank-card,.dc-slide>.feat-bank-card{max-width:100%}
 .dc-dots{margin:2px 0 12px}
 @media (min-width:700px){.dash-carousel-wrap{margin-inline:auto;width:100%;max-width:860px}.dash-carousel .dc-slide{flex-basis:100%}.dash-carousel::before,.dash-carousel::after{display:none}}
+
+/* ---------- یکپارچگی رنگ پس‌زمینه: کارت‌ها و بدنه یک رنگ (v=43) ---------- */
+:root{
+  --bg-2:#f5f6f8;--bg-2-top:#f5f6f8;--bg-1:#f5f6f8;
+  --glass-bg:rgba(245,246,248,.86);
+  --pbc-bg-start:#f5f6f8;--pbc-bg-mid:#f5f6f8;--pbc-bg-end:#f5f6f8;
+  --pbc-border:#e6e9ef;
+  --shadow-card:0 1px 0 rgba(255,255,255,.9) inset,0 2px 6px rgba(15,25,60,.05),0 14px 30px -20px rgba(15,25,60,.22);
+}
+:root[data-theme=dark]{
+  --bg-2:#0c0f15;--bg-2-top:#0c0f15;--bg-1:#0c0f15;
+  --glass-bg:rgba(12,15,21,.86);
+  --pbc-bg-start:#0c0f15;--pbc-bg-mid:#0c0f15;--pbc-bg-end:#0c0f15;
+  --pbc-border:#222831;
+  --shadow-card:0 1px 0 rgba(255,255,255,.03) inset,0 2px 8px rgba(0,0,0,.35),0 16px 34px -20px rgba(0,0,0,.75);
+}
+body{background:var(--bg)}
+/* حلقه‌های تزئینی روی پس‌زمینه‌ی یک‌رنگ کمرنگ می‌شوند تا تضاد نسازند */
+.plan-bank-card::before,.feat-bank-card::before{opacity:.10}
+.plan-bank-card::after,.feat-bank-card::after{opacity:.07}
+/* سایه و گوشه‌ها می‌مانند، فقط درخشش آبی پشت کارت حذف می‌شود */
+.plan-bank-card,.feat-bank-card{box-shadow:var(--shadow-card)}
+
+/* ---------- حذف خط جداکننده بین کارت و بدنه (v=45) ---------- */
+:root{--pbc-border:transparent}
+:root[data-theme=dark]{--pbc-border:transparent}
+.card,.toggle-row.is-link,.bottom-nav{border-color:transparent}
+.plan-bank-card,.feat-bank-card{border-color:transparent;box-shadow:var(--shadow-card)}
