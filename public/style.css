@@ -94,3 +94,26 @@ html[data-theme=dark] .dc-slide>.feat-bank-card .fbc-foot{border-top-color:rgba(
 .dc-slide>.plan-bank-card,.dc-slide>.feat-bank-card{max-width:100%}
 .dc-dots{margin:2px 0 12px}
 @media (min-width:700px){.dash-carousel-wrap{margin-inline:auto;width:100%;max-width:860px}.dash-carousel .dc-slide{flex-basis:100%}.dash-carousel::before,.dash-carousel::after{display:none}}
+
+/* ---------- حذف خط جداکننده زیر کارت، بالای نقطه‌ها (v=46) ---------- */
+.plan-bank-card,.feat-bank-card{
+  border-color:transparent;
+  box-shadow:0 4px 10px -9px rgba(18,70,148,.30),0 1px 0 rgba(255,255,255,.6) inset;
+}
+:root[data-theme=dark] .plan-bank-card,:root[data-theme=dark] .feat-bank-card{
+  box-shadow:0 4px 12px -9px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.04) inset;
+}
+
+/* ---------- نرم‌کردن هاله‌ی آبی پس‌زمینه تا لبه‌ی کارت خط نسازد (v=47) ---------- */
+body{
+  background:
+    radial-gradient(850px 420px at 96% -10%,rgba(24,88,185,.07),transparent 62%),
+    radial-gradient(700px 400px at -12% 18%,rgba(56,116,205,.07),transparent 58%),
+    var(--bg);
+}
+:root[data-theme=dark] body{
+  background:
+    radial-gradient(850px 420px at 96% -10%,rgba(24,88,185,.16),transparent 62%),
+    radial-gradient(700px 400px at -12% 18%,rgba(56,116,205,.14),transparent 58%),
+    var(--bg);
+}
